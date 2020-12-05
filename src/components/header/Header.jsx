@@ -13,6 +13,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+
+  appBar: {
+    paddingRight: theme.spacing(5),
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -24,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
       display: "block",
     },
   },
+
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -82,7 +87,7 @@ export default function SearchAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar>
+      <AppBar className={classes.appBar}>
         <Toolbar>
           <IconButton
             edge="start"

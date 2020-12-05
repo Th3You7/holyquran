@@ -1,9 +1,9 @@
 import "./App.css";
-import { Header } from "./components";
+import { Header, Cards, MediaPlayer } from "./components";
 function App() {
   return (
     <div className="App">
-      <Header />
+      <MediaPlayer />
     </div>
   );
 }

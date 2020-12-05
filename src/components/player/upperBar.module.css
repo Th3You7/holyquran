@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 8px;
+}
+
+.volume {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.volume_control {
+  width: 80px;
+  height: 2px;
+  margin-left: 8px;
+  outline: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
