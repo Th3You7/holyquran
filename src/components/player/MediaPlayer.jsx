@@ -1,17 +1,19 @@
 import React from "react";
 import TimelineController from "./TimelineController";
 import UpperBar from "./UpperBar";
+import BottomBar from "./BottomBar";
 import Infos from "./Info";
+import MiniPlayer from "./MiniPlayer";
 import { SkipNext, PlayArrow, SkipPrevious } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import styles from "./mediaPlayer.module.css";
 
 const useStyle = makeStyles((theme) => ({
   container: {
     display: "flex",
     flexDirection: "column",
     padding: theme.spacing(2),
+    overflow: "hidden",
   },
 
   controls: {
@@ -20,8 +22,8 @@ const useStyle = makeStyles((theme) => ({
     justifyContent: "center",
   },
   playIcon: {
-    height: 48,
-    width: 48,
+    height: 68,
+    width: 68,
   },
 }));
 
@@ -34,15 +36,17 @@ const MediaPlayer = ({ width }) => {
       <TimelineController />
       <div className={classes.controls}>
         <IconButton aria-label="previous">
-          <SkipPrevious />
+          <SkipPrevious fontSize="large" />
         </IconButton>
         <IconButton aria-label="play/pause">
           <PlayArrow className={classes.playIcon} />
         </IconButton>
         <IconButton aria-label="next">
-          <SkipNext />
+          <SkipNext fontSize="large" />
         </IconButton>
       </div>
+      {/*<BottomBar />*/}
+      <MiniPlayer />
     </div>
   );
 };

@@ -6,7 +6,7 @@ const UpperBar = () => {
   return (
     <div className={classes.container}>
       <div className={classes.volume}>
-        <VolumeUp />
+        <VolumeUp fontSize="large" />
         <input
           type="range"
           min="0"
@@ -14,7 +14,7 @@ const UpperBar = () => {
           className={classes.volume_control}
         />
       </div>
-      <KeyboardArrowUp />
+      <KeyboardArrowUp fontSize="large" />
     </div>
   );
 };

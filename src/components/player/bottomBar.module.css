@@ -1,0 +1,19 @@
+.container {
+  height: 80vh;
+  padding: 16;
+  position: absolute;
+  left: 0;
+  bottom: -72.5vh;
+  overflow-y: scroll;
+  z-index: 2;
+  background: rgb(221, 146, 146);
+  width: 100%;
+}
+
+.inner_container {
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+}
