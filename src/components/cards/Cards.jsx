@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import Card from "./Card";
-import Grid from "@material-ui/core/Grid";
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { mainContext } from "../../Providers/MainProvider";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,13 +12,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Cards = () => {
+  const { data } = useContext(mainContext);
   const classes = useStyles();
 
   return (
     <Grid container className={classes.root} spacing={2}>
-      {[1, 2, 3, 4, 5, 6].map((item) => (
-        <Grid item key={item} xs={6} sm={4} lg={2}>
-          <Card />
+      {data.map((item) => (
+        <Grid item key={item.id} xs={6} sm={4} lg={2}>
+          <Card reciter={item.name} rewaya={item.rewaya} count={item.count} />
         </Grid>
       ))}
     </Grid>

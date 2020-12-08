@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import TemporaryDrawer from "./Drawer";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import InputBase from "@material-ui/core/InputBase";
+import React from "react";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  InputBase,
+} from "@material-ui/core/";
 import { fade, makeStyles } from "@material-ui/core/styles";
-import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
+import { Menu, Search } from "@material-ui/icons/";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -70,20 +70,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchAppBar() {
+export default function Header({ openDrawer }) {
   const classes = useStyles();
-  let [state, setState] = useState(false);
-
-  const toggleDrawer = (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
-    setState(!state);
-  };
 
   return (
     <div className={classes.root}>
@@ -94,16 +82,16 @@ export default function SearchAppBar() {
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
-            onClick={(e) => toggleDrawer(e)}
+            onClick={(e) => openDrawer(e)}
           >
-            <MenuIcon />
+            <Menu />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             HolyQuran-App
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
-              <SearchIcon />
+              <Search />
             </div>
             <InputBase
               placeholder="Search…"
@@ -115,7 +103,6 @@ export default function SearchAppBar() {
             />
           </div>
         </Toolbar>
-        <TemporaryDrawer toggleDrawer={toggleDrawer} state={state} />
       </AppBar>
     </div>
   );

@@ -1,35 +1,41 @@
 import React from "react";
-import Paper from "@material-ui/core/Paper";
+import {
+  Paper,
+  Typography,
+  Divider,
+  IconButton,
+  Link,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import { Link as RouterLink } from "react-router-dom";
 
 const useStyle = makeStyles((theme) => ({
   card: {
     textAlign: "center",
   },
   box: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
   },
 }));
 
-const Card = () => {
+const Card = ({ reciter, count, rewaya }) => {
   const classes = useStyle();
 
   return (
     <Paper elevation={3} className={classes.card}>
       <div className={classes.box}>
-        <Typography component={"h6"} style={{ fontWeight: 600 }}>
-          {"ISLAM SOBHI"}
-        </Typography>
-        <Typography component={"p"}>{"116"}</Typography>
-        <Typography component={"p"}>{"Riwaya"}</Typography>
+        <Link to="/player" component={RouterLink} color="inherit">
+          <Typography variant="h6" style={{ fontWeight: 600 }}>
+            {reciter}
+          </Typography>
+          <Typography variant="subtitle1">{rewaya}</Typography>
+          <Typography variant="subtitle2">{count}</Typography>
+        </Link>
       </div>
       <Divider />
       <div className={classes.box}>
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="Add to favorites">
           <FavoriteIcon />
         </IconButton>
       </div>

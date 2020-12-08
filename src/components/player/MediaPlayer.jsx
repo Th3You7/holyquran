@@ -3,7 +3,6 @@ import TimelineController from "./TimelineController";
 import UpperBar from "./UpperBar";
 import BottomBar from "./BottomBar";
 import Infos from "./Info";
-import MiniPlayer from "./MiniPlayer";
 import { SkipNext, PlayArrow, SkipPrevious } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -27,7 +26,7 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const MediaPlayer = ({ width }) => {
+const MediaPlayer = () => {
   const classes = useStyle();
   return (
     <div className={classes.container}>
@@ -45,8 +44,7 @@ const MediaPlayer = ({ width }) => {
           <SkipNext fontSize="large" />
         </IconButton>
       </div>
-      {/*<BottomBar />*/}
-      <MiniPlayer />
+      <BottomBar />
     </div>
   );
 };
