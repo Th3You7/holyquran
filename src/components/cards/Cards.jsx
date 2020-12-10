@@ -19,7 +19,14 @@ const Cards = () => {
     <Grid container className={classes.root} spacing={2}>
       {data.map((item) => (
         <Grid item key={item.id} xs={6} sm={4} lg={2}>
-          <Card reciter={item.name} rewaya={item.rewaya} count={item.count} />
+          <Card
+            id={item.id}
+            name={item.name}
+            suras={item.suras}
+            server={item.Server}
+            rewaya={item.rewaya}
+            count={item.count}
+          />
         </Grid>
       ))}
     </Grid>

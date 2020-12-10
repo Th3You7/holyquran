@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Infos() {
+export default function Infos({ reciter, rewaya }) {
   const classes = useStyles();
 
   return (
@@ -25,7 +25,7 @@ export default function Infos() {
         Surat Yassine
       </Typography>
       <Typography variant="subtitle1" className={classes.center}>
-        Islam Sobhi
+        {reciter}
       </Typography>
     </>
   );
