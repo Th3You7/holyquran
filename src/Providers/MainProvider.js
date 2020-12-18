@@ -21,9 +21,15 @@ const MainProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const [currReciter, setCurrReciter] = useState(initCurrReciter);
   const [currSura, setCurrSura] = useState(initCurrSura);
+  const [surasNames, setSurasNames] = useState([]);
 
   useEffect(() => {
     const fetching = async () => setData(await fetchAllReaders());
+    fetching();
+  }, []);
+
+  useEffect(() => {
+    const fetching = async () => setSurasNames(await fetchAllSuras());
     fetching();
   }, []);
 
@@ -33,9 +39,9 @@ const MainProvider = ({ children }) => {
         data,
         currReciter,
         currSura,
+        surasNames,
         setCurrReciter,
         setCurrSura,
-        fetchAllSuras,
       }}
     >
       {children}

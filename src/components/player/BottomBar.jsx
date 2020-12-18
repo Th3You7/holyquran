@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
-import { FixedSizeList as List } from "react-window";
+import React, { useContext, memo } from "react";
+import { FixedSizeList as List, areEqual } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
-
 import { Box, ListItemIcon, ListItem, ListItemText } from "@material-ui/core";
 import {
   ExpandLess,
@@ -12,45 +11,65 @@ import {
 } from "@material-ui/icons";
 import styles from "./bottomBar.module.css";
 import { mainContext } from "../../Providers/MainProvider";
+import { ControlContext } from "../../Providers/ControlProvider";
+import memoize from "memoize-one";
 
+const Row = memo((props) => {
+  const { style, index, data } = props;
+  const { allSurasIndex, surasNames, setCurrSura, currSura, dispatch } = data;
+  const { player } = useContext(ControlContext);
+
+  if (surasNames) {
+    const { number, transliteration_en } = surasNames.find(
+      (sura) => sura.number === Number(allSurasIndex[index])
+    );
+
+    const handleClick = () => {
+      setCurrSura({
+        ...currSura,
+        number,
+        name: transliteration_en,
+      });
+
+      dispatch({ type: "SET_ISPLAYING", payload: true });
+    };
+    return (
+      <ListItem button style={style} onClick={handleClick}>
+        <ListItemIcon>
+          <MusicNote />
+        </ListItemIcon>
+        <ListItemText primary={transliteration_en} />
+      </ListItem>
+    );
+  }
+  return <div>Loading...</div>;
+}, areEqual);
+
+//*Memoized fn
+const createItemData = memoize(
+  (allSurasIndex, surasNames, setCurrSura, currSura, dispatch) => ({
+    allSurasIndex,
+    surasNames,
+    setCurrSura,
+    currSura,
+    dispatch,
+  })
+);
+
+//*Bottom Bar
 const BottomBar = ({ suras }) => {
-  const { fetchAllSuras, currSura, setCurrSura } = useContext(mainContext);
-
+  const { surasNames, setCurrSura, currSura } = useContext(mainContext);
+  //
+  const { dispatch } = useContext(ControlContext);
+  //
   const allSurasIndex = suras.split(",");
-  const [surasNames, setSurasNames] = useState();
-
-  useEffect(() => {
-    const fetching = async () => setSurasNames(await fetchAllSuras());
-    fetching();
-  }, [fetchAllSuras]);
-
-  const Row = (props) => {
-    const { style, index, data } = props;
-    const { allSurasIndex, surasNames } = data;
-
-    if (surasNames) {
-      const { number, transliteration_en } = surasNames.find(
-        (sura) => sura.number === Number(allSurasIndex[index])
-      );
-      console.log(currSura);
-
-      return (
-        <ListItem
-          button
-          style={style}
-          onClick={() =>
-            setCurrSura({ ...currSura, number, name: transliteration_en })
-          }
-        >
-          <ListItemIcon>
-            <MusicNote />
-          </ListItemIcon>
-          <ListItemText primary={transliteration_en} />
-        </ListItem>
-      );
-    }
-    return <div>Loading...</div>;
-  };
+  const itemData = createItemData(
+    allSurasIndex,
+    surasNames,
+    setCurrSura,
+    currSura,
+    dispatch
+  );
 
   return (
     <div className={styles.container}>
@@ -60,6 +79,9 @@ const BottomBar = ({ suras }) => {
         <Shuffle fontSize="large" />
         <ExpandLess fontSize="large" />
       </Box>
+      {
+        //TODO: search about react-window's lazy loading
+      }
       <AutoSizer>
         {({ width }) => (
           <List
@@ -67,7 +89,7 @@ const BottomBar = ({ suras }) => {
             itemCount={allSurasIndex.length}
             itemSize={45}
             width={width}
-            itemData={{ allSurasIndex, surasNames }}
+            itemData={itemData}
           >
             {Row}
           </List>

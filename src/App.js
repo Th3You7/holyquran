@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Home, Player } from "./routes";
 import MainProvider from "./Providers/MainProvider";
+import ControlProvider from "./Providers/ControlProvider";
 
 function App() {
   return (
@@ -12,7 +13,9 @@ function App() {
               <Home />
             </Route>
             <Route path="/player">
-              <Player />
+              <ControlProvider>
+                <Player />
+              </ControlProvider>
             </Route>
           </Switch>
         </MainProvider>

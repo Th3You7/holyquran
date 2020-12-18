@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext, useReducer, useEffect, useCallback } from "react";
 import { Slider, Typography, Box } from "@material-ui/core";
 import { withStyles, makeStyles } from "@material-ui/styles";
+import { ControlContext } from "../../Providers/ControlProvider";
 
-const PrettoSlider = withStyles({
+//* Creating a slider for expanded player view
+const MaxSlider = withStyles({
   root: {
     height: 6,
   },
@@ -31,6 +33,25 @@ const PrettoSlider = withStyles({
   },
 })(Slider);
 
+//* Creating a slider for minimized player view
+const MinSlider = withStyles({
+  root: {
+    height: 6,
+  },
+  thumb: {
+    display: "none",
+  },
+
+  track: {
+    height: 6,
+    //borderRadius: 4,
+  },
+  rail: {
+    height: 6,
+    //borderRadius: 4
+  },
+})(Slider);
+
 const useStyle = makeStyles((theme) => ({
   innerContainer: {
     display: "flex",
@@ -47,15 +68,117 @@ const useStyle = makeStyles((theme) => ({
 const TimelineController = () => {
   const classes = useStyle();
 
-  return (
-    <Box className={classes.container}>
-      <Box className={classes.innerContainer}>
-        <Typography variant="body1">00:00</Typography>
-        <Typography variant="body1">03:45</Typography>
+  const {
+    player,
+    state: { isPlaying },
+  } = useContext(ControlContext);
+
+  const initTimeState = {
+    currTime: 0,
+    duration: 0,
+  };
+
+  const timeReducer = (state, action) => {
+    switch (action.type) {
+      case "SET_CURRTIME":
+        return {
+          ...state,
+          currTime: action.payload,
+        };
+
+      case "SET_DURATION":
+        return {
+          ...state,
+          duration: action.payload,
+        };
+
+      default:
+        return;
+    }
+  };
+
+  const [timeState, timeDispatch] = useReducer(timeReducer, initTimeState);
+
+  const { currTime } = timeState;
+
+  //* updating current time of audio
+  const handleTimeUpdate = useCallback(() => {
+    const currentTime = Math.trunc(player.currentTime);
+    timeDispatch({ type: "SET_CURRTIME", payload: currentTime });
+  }, [player, timeDispatch]);
+
+  //* handling time value changing
+  const handleTimeChange = (e, newValue) => {
+    player.currentTime = newValue;
+    timeDispatch({ type: "SET_CURRTIME", payload: newValue });
+  };
+
+  useEffect(() => {
+    if (player) {
+      //* this functionality is similar to updatetime event of HtmlMediaElement, it will update every 500ms
+      let setTimeInterval;
+      if (player.currentSrc && isPlaying) {
+        setTimeInterval = setInterval(handleTimeUpdate, 800);
+      } else {
+        clearInterval(setTimeInterval);
+      }
+      return () => clearInterval(setTimeInterval);
+    }
+  }, [isPlaying, player, handleTimeUpdate]);
+
+  //*formating time
+  const setTimeFormat = (time) => {
+    let secs = time % 60;
+    let mins = ((time - secs) / 60) % 60;
+    let hours = ((time - secs) / 60 - mins) / 60;
+
+    if (secs < 10) {
+      secs = `0${secs}`;
+    }
+    if (mins < 10) {
+      mins = `0${mins}`;
+    }
+
+    if (hours >= 1) {
+      return `0${hours}:${mins}:${secs}`;
+    } else {
+      return `${mins}:${secs}`;
+    }
+  };
+
+  if (true) {
+    return (
+      <Box className={classes.container}>
+        <Box className={classes.innerContainer}>
+          <Typography variant="body1">{setTimeFormat(currTime)}</Typography>
+          <Typography variant="body1">
+            {player
+              ? player.duration
+                ? setTimeFormat(Math.trunc(player.duration))
+                : setTimeFormat(0)
+              : setTimeFormat(0)}
+          </Typography>
+        </Box>
+        <MaxSlider
+          defaultValue={0}
+          value={currTime}
+          max={player ? player.duration : 0}
+          onChange={handleTimeChange}
+        />
       </Box>
-      <PrettoSlider />
-    </Box>
-  );
+    );
+  }
+
+  if (false) {
+    return (
+      <MinSlider
+        defaultValue={0}
+        value={currTime}
+        max={player ? player.duration : 0}
+        onChange={handleTimeChange}
+      />
+    );
+  }
 };
 
 export default TimelineController;
