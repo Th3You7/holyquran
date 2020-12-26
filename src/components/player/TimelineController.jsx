@@ -70,7 +70,7 @@ const TimelineController = () => {
 
   const {
     player,
-    state: { isPlaying },
+    state: { isPlaying, playerState },
   } = useContext(ControlContext);
 
   const initTimeState = {
@@ -103,7 +103,7 @@ const TimelineController = () => {
 
   //* updating current time of audio
   const handleTimeUpdate = useCallback(() => {
-    const currentTime = Math.trunc(player.currentTime);
+    const currentTime = Math.floor(player.currentTime);
     timeDispatch({ type: "SET_CURRTIME", payload: currentTime });
   }, [player, timeDispatch]);
 
@@ -117,8 +117,8 @@ const TimelineController = () => {
     if (player) {
       //* this functionality is similar to updatetime event of HtmlMediaElement, it will update every 500ms
       let setTimeInterval;
-      if (player.currentSrc && isPlaying) {
-        setTimeInterval = setInterval(handleTimeUpdate, 800);
+      if (isPlaying) {
+        setTimeInterval = setInterval(handleTimeUpdate, 500);
       } else {
         clearInterval(setTimeInterval);
       }
@@ -146,39 +146,38 @@ const TimelineController = () => {
     }
   };
 
-  if (true) {
-    return (
-      <Box className={classes.container}>
-        <Box className={classes.innerContainer}>
-          <Typography variant="body1">{setTimeFormat(currTime)}</Typography>
-          <Typography variant="body1">
-            {player
-              ? player.duration
-                ? setTimeFormat(Math.trunc(player.duration))
-                : setTimeFormat(0)
-              : setTimeFormat(0)}
-          </Typography>
-        </Box>
-        <MaxSlider
-          defaultValue={0}
-          value={currTime}
-          max={player ? player.duration : 0}
-          onChange={handleTimeChange}
-        />
-      </Box>
-    );
-  }
-
-  if (false) {
+  if (playerState === "reduced") {
     return (
       <MinSlider
         defaultValue={0}
         value={currTime}
         max={player ? player.duration : 0}
         onChange={handleTimeChange}
+        onClick={(e) => e.stopPropagation()}
       />
     );
   }
+
+  return (
+    <Box className={classes.container}>
+      <Box className={classes.innerContainer}>
+        <Typography variant="body1">{setTimeFormat(currTime)}</Typography>
+        <Typography variant="body1">
+          {player
+            ? player.duration
+              ? setTimeFormat(Math.trunc(player.duration))
+              : setTimeFormat(0)
+            : setTimeFormat(0)}
+        </Typography>
+      </Box>
+      <MaxSlider
+        defaultValue={0}
+        value={currTime}
+        max={player ? player.duration : 0}
+        onChange={handleTimeChange}
+      />
+    </Box>
+  );
 };
 
 export default TimelineController;

@@ -5,51 +5,68 @@ import { Close, Pause, PlayArrow, SkipNext } from "@material-ui/icons";
 import { ControlContext } from "../../Providers/ControlProvider";
 import classes from "./miniPlayer.module.css";
 
-const MiniPlayer = ({ currReciter }) => {
+const MiniPlayer = ({ currReciter, handleNextPrev }) => {
   const {
     dispatch,
-    state: { isPlaying, playerState },
+    state: { isPlaying, isLoading, isSeeking },
   } = useContext(ControlContext);
 
-  if (playerState === "reduced") {
-    return (
-      <div className={classes.container}>
-        <div className={classes.inner_container}>
-          <div>
-            <Typography variant="h5">Surat Yusuf</Typography>
-            <Typography variant="body1">{currReciter}</Typography>
-          </div>
+  const extendPlayer = () => {
+    //e.stopPropagation();
+    dispatch({ type: "SET_PLAYERSTATE", payload: "extended" });
+  };
 
-          <div>
-            <IconButton aria-label="next">
-              <SkipNext fontSize="large" />
-            </IconButton>
-            <IconButton aria-label="close">
-              <Close fontSize="large" />
-            </IconButton>
-          </div>
+  const handlePLayPause = (e) => {
+    e.stopPropagation();
+    dispatch({ type: "SET_ISPLAYING", payload: !isPlaying });
+  };
+
+  return (
+    <div
+      className={classes.container}
+      onClick={extendPlayer}
+      style={{ cursor: "pointer" }}
+    >
+      <div className={classes.inner_container}>
+        <div>
+          <Typography variant="h5">Surat Yusuf</Typography>
+          <Typography variant="body1">{currReciter.name}</Typography>
         </div>
-        <div className={classes.circle}>
+
+        <div>
           <IconButton
-            aria-label="pause/play"
-            onClick={() =>
-              dispatch({ type: "SET_ISPLAYING", payload: !isPlaying })
-            }
+            aria-label="next"
+            onClick={(e) => {
+              handleNextPrev(1);
+              e.stopPropagation();
+            }}
           >
+            <SkipNext fontSize="large" />
+          </IconButton>
+          <IconButton aria-label="close">
+            <Close fontSize="large" />
+          </IconButton>
+        </div>
+      </div>
+      <div className={classes.circle}>
+        {isLoading || isSeeking ? (
+          <IconButton>
+            <PlayArrow fontSize="large" />
+          </IconButton>
+        ) : (
+          <IconButton aria-label="pause/play" onClick={handlePLayPause}>
             {isPlaying ? (
               <Pause fontSize="large" />
             ) : (
               <PlayArrow fontSize="large" />
             )}
           </IconButton>
-        </div>
-
-        <TimelineController />
+        )}
       </div>
-    );
-  }
 
-  return null;
+      <TimelineController />
+    </div>
+  );
 };
 
 export default MiniPlayer;

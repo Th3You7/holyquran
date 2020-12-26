@@ -1,16 +1,23 @@
 import React, { createContext, useReducer, useState } from "react";
+import useResize from "../hooks/useResize";
 
 export const ControlContext = createContext();
 
 const ControlProvider = ({ children }) => {
-  //initialize player
+  //get the width & height of device
+  const [width, height] = useResize();
+  //initialize player using ref
   const [player, setPlayer] = useState(undefined);
 
   const initControlState = {
     //* there will be 3 states of playerState: playlist, reduced, expanded
-    playerState: "expanded",
+    playerState: "reduced",
     isPlaying: false,
-
+    isRepeated: false,
+    isLoading: false,
+    isLoaded: false,
+    isSeeking: false,
+    isSeeked: false,
     //isMinimized: false,
   };
 
@@ -27,6 +34,39 @@ const ControlProvider = ({ children }) => {
           ...state,
           isPlaying: action.payload,
         };
+
+      case "SET_REPEAT":
+        return {
+          ...state,
+          isRepeated: !state.isRepeated,
+        };
+      case "SET_ISLOADING":
+        return {
+          ...state,
+          isLoading: true,
+          isLoaded: false,
+        };
+
+      case "SET_ISLOADED":
+        return {
+          ...state,
+          isLoading: false,
+          isLoaded: !(true && action.payload),
+        };
+
+      case "SET_ISSEEKING":
+        return {
+          ...state,
+          isSeeking: true,
+          isSeeked: false,
+        };
+
+      case "SET_ISSEEKED":
+        return {
+          ...state,
+          isSeeking: false,
+          isSeeked: !(true && action.payload),
+        };
       default:
         return;
     }
@@ -37,6 +77,8 @@ const ControlProvider = ({ children }) => {
   return (
     <ControlContext.Provider
       value={{
+        width,
+        height,
         player,
         state,
         setPlayer,

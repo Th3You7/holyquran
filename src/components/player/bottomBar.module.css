@@ -1,6 +1,6 @@
 .container {
   height: 80vh;
-  padding: 16;
+  /*padding: 16px;*/
   position: absolute;
   left: 0;
   bottom: -72.5vh;

@@ -16,6 +16,7 @@ const MainProvider = ({ children }) => {
   const initCurrSura = {
     number: null,
     name: "",
+    index: null,
   };
 
   const [data, setData] = useState([]);

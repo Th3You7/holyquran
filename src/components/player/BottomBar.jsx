@@ -4,10 +4,12 @@ import AutoSizer from "react-virtualized-auto-sizer";
 import { Box, ListItemIcon, ListItem, ListItemText } from "@material-ui/core";
 import {
   ExpandLess,
+  ExpandMore,
   Repeat,
-  Shuffle,
+  //Shuffle,
   LibraryMusic,
   MusicNote,
+  RepeatOne,
 } from "@material-ui/icons";
 import styles from "./bottomBar.module.css";
 import { mainContext } from "../../Providers/MainProvider";
@@ -17,7 +19,6 @@ import memoize from "memoize-one";
 const Row = memo((props) => {
   const { style, index, data } = props;
   const { allSurasIndex, surasNames, setCurrSura, currSura, dispatch } = data;
-  const { player } = useContext(ControlContext);
 
   if (surasNames) {
     const { number, transliteration_en } = surasNames.find(
@@ -29,9 +30,12 @@ const Row = memo((props) => {
         ...currSura,
         number,
         name: transliteration_en,
+        index,
       });
 
-      dispatch({ type: "SET_ISPLAYING", payload: true });
+      //TODO: even if payload is true , it will reverse to false, see the state
+      dispatch({ type: "SET_ISLOADED", payload: true });
+      dispatch({ type: "SET_ISSEEKED", payload: true });
     };
     return (
       <ListItem button style={style} onClick={handleClick}>
@@ -60,9 +64,13 @@ const createItemData = memoize(
 const BottomBar = ({ suras }) => {
   const { surasNames, setCurrSura, currSura } = useContext(mainContext);
   //
-  const { dispatch } = useContext(ControlContext);
+  const {
+    dispatch,
+    state: { playerState, isRepeated },
+  } = useContext(ControlContext);
   //
   const allSurasIndex = suras.split(",");
+  //
   const itemData = createItemData(
     allSurasIndex,
     surasNames,
@@ -71,13 +79,37 @@ const BottomBar = ({ suras }) => {
     dispatch
   );
 
+  //* handle toggling between playlist and expanded states
+  const handleClick = () => {
+    dispatch({
+      type: "SET_PLAYERSTATE",
+      payload: playerState === "expanded" ? "playlist" : "expanded",
+    });
+  };
+
+  //* handle repeat one sura
+
+  const handleRepeat = () => {
+    dispatch({
+      type: "SET_REPEAT",
+    });
+  };
+
   return (
     <div className={styles.container}>
       <Box className={styles.inner_container} boxShadow={2}>
         <LibraryMusic fontSize="large" />
-        <Repeat fontSize="large" />
-        <Shuffle fontSize="large" />
-        <ExpandLess fontSize="large" />
+        {!isRepeated ? (
+          <Repeat fontSize="large" onClick={handleRepeat} />
+        ) : (
+          <RepeatOne fontSize="large" onClick={handleRepeat} />
+        )}
+        {/* <Shuffle fontSize="large" />*/}
+        {playerState === "playlist" ? (
+          <ExpandMore fontSize="large" onClick={handleClick} />
+        ) : (
+          <ExpandLess fontSize="large" onClick={handleClick} />
+        )}
       </Box>
       {
         //TODO: search about react-window's lazy loading

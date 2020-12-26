@@ -5,6 +5,7 @@
   left: 0;
   box-sizing: border-box;
   background-color: rgb(134, 82, 218);
+  z-index: 9999px;
 }
 
 .inner_container {
