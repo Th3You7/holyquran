@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Grid, Avatar, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import img from "../../imgs/quran.jpg";
+import { mainContext } from "../../Providers/MainProvider";
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -26,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ArtWork = (props) => {
+  const { currReciter, currSura } = useContext(mainContext);
+
   const { maximized } = props;
   const classes = useStyles(props);
 
@@ -36,13 +39,15 @@ const ArtWork = (props) => {
       wrap="nowrap"
       direction={maximized ? "column" : "row"}
     >
-      <Grid item style={{ flexGrow: 1 }}>
-        <Avatar
-          variant={maximized ? "rounded" : "circular"}
-          className={classes.avatar}
-          src={img}
-        />
-      </Grid>
+      {true ? (
+        <Grid item style={{ flexGrow: 1 }}>
+          <Avatar
+            variant={maximized ? "rounded" : "circular"}
+            className={classes.avatar}
+            src={img}
+          />
+        </Grid>
+      ) : null}
       <Grid
         item
         container
@@ -51,12 +56,12 @@ const ArtWork = (props) => {
       >
         <Grid item>
           <Typography variant="subtitle1" className={classes.title}>
-            Islam Sobhi
+            {currReciter.name}
           </Typography>
         </Grid>
         <Grid item>
           <Typography variant="subtitle2" className={classes.subTitle}>
-            Al-Fatiha
+            {currSura.name}
           </Typography>
         </Grid>
       </Grid>

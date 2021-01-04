@@ -7,13 +7,9 @@
 /* * Reset Configs */
 body,
 html {
-  padding: 0;
-  margin: 0;
+  /*padding: 0;
+  margin: 0;*/
   width: 100%;
   height: 100vh;
-  /*font-family: "Quicksand", sans-serif;*/
-}
-
-* {
   font-family: "Quicksand", sans-serif;
 }

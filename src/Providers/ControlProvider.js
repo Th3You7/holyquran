@@ -11,7 +11,7 @@ const ControlProvider = ({ children }) => {
 
   const initControlState = {
     //* there will be 3 states of playerState: playlist, reduced, expanded
-    playerState: "reduced",
+    playerState: "expanded",
     isPlaying: false,
     isRepeated: false,
     isLoading: false,

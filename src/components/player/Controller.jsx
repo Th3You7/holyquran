@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Grid, IconButton } from "@material-ui/core";
+import { mainContext } from "../../Providers/MainProvider";
 import {
   PauseRounded,
   PlayArrowRounded,
@@ -7,6 +8,7 @@ import {
   SkipPreviousRounded,
 } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
+import { ControlContext } from "../../Providers/ControlProvider";
 
 const useStyles = makeStyles((theme) => ({
   playPauseIcon: {
@@ -19,34 +21,111 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Controller = (props) => {
-  const { minimized, ultraMinimized } = props;
   const classes = useStyles(props);
+  //
+  const { minimized, ultraMinimized } = props;
+  //
+  const {
+    player,
+    dispatch,
+    state: { isPlaying, isLoading, isLoaded, isSeeking, isSeeked },
+  } = useContext(ControlContext);
+  //
+  const { currReciter, currSura, setCurrSura, surasNames } = useContext(
+    mainContext
+  );
+  //
+  const { suras } = currReciter;
+  const { index } = currSura;
+
+  //*handling next & prev functionality
+  const handleNextPrev = (num) => {
+    const allSurasIndex = suras.split(",").map((n) => Number(n));
+
+    //*case of prev clicked and the current time of player is bigger than or equal to 5s, it will reset to 0;
+    if (num === -1 && player.currentTime >= 5) {
+      player.currentTime = 0;
+    } else if (!allSurasIndex[index + num]) {
+      if (num === 1) {
+        //* case of:  next clicked and the sura is the last; it will reset to the first available sura in the playlist
+        const { transliteration_en } = surasNames.find(
+          (x) => x.number === allSurasIndex[0]
+        );
+        setCurrSura({
+          index: 0,
+          name: transliteration_en,
+          number: allSurasIndex[0],
+        });
+      } else {
+        //* case of:  prev clicked and the sura is the first; it will reset to the last available sura in the playlist
+        const { transliteration_en, number } = surasNames.find(
+          (x) => x.number === allSurasIndex[allSurasIndex.length - 1]
+        );
+        setCurrSura({
+          index: allSurasIndex.length - 1,
+          name: transliteration_en,
+          number,
+        });
+      }
+    } else {
+      const { number, transliteration_en } = surasNames.find(
+        (x) => x.number === allSurasIndex[index + num]
+      );
+      setCurrSura({
+        index: index + num,
+        name: transliteration_en,
+        number,
+      });
+    }
+  };
+
+  //*return play or pause according to the state
+  const playPauseBtn = () => {
+    return player ? (
+      isSeeking || isLoading ? (
+        <IconButton>
+          <PlayArrowRounded className={classes.playPauseIcon} />
+        </IconButton>
+      ) : isSeeked || isLoaded ? (
+        <IconButton
+          aria-label="play/pause"
+          onClick={() => {
+            dispatch({ type: "SET_ISPLAYING", payload: !isPlaying });
+          }}
+        >
+          {isPlaying ? (
+            <PauseRounded className={classes.playPauseIcon} />
+          ) : (
+            <PlayArrowRounded className={classes.playPauseIcon} />
+          )}
+        </IconButton>
+      ) : (
+        <IconButton>
+          <PlayArrowRounded className={classes.playPauseIcon} />
+        </IconButton>
+      )
+    ) : (
+      <IconButton>
+        <PlayArrowRounded className={classes.playPauseIcon} />
+      </IconButton>
+    );
+  };
 
   const minimizedController = () => {
-    return (
-      <Grid item>
-        <IconButton>
-          <PauseRounded className={classes.playPauseIcon} />
-        </IconButton>
-      </Grid>
-    );
+    return <Grid item>{playPauseBtn()}</Grid>;
   };
 
   const maximizedController = () => {
     return (
       <>
         <Grid item>
-          <IconButton>
+          <IconButton onClick={() => handleNextPrev(-1)}>
             <SkipPreviousRounded className={classes.controlIcons} />
           </IconButton>
         </Grid>
+        <Grid item>{playPauseBtn()}</Grid>
         <Grid item>
-          <IconButton style={{ padding: minimized ? 0 : "auto" }}>
-            <PlayArrowRounded className={classes.playPauseIcon} />
-          </IconButton>
-        </Grid>
-        <Grid item>
-          <IconButton>
+          <IconButton onClick={() => handleNextPrev(1)}>
             <SkipNextRounded className={classes.controlIcons} />
           </IconButton>
         </Grid>

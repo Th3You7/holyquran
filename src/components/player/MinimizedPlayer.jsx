@@ -4,7 +4,7 @@ import CurrReciter from "./CurrReciter";
 import VolumeController from "./VolumeController";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import TimelineController2 from "./TimelineController2";
+import TimelineController from "./TimelineController";
 import { ControlContext } from "../../Providers/ControlProvider";
 
 const useStyles = makeStyles((theme) => ({
@@ -31,7 +31,7 @@ const MinimizedPlayer = () => {
       </Grid>
       {width >= 768 ? (
         <Grid item style={{ flexGrow: 3 }}>
-          <TimelineController2 />
+          <TimelineController />
         </Grid>
       ) : null}
 

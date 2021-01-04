@@ -1,16 +1,8 @@
 import React, { useContext, memo } from "react";
 import { FixedSizeList as List, areEqual } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
-import { Box, ListItemIcon, ListItem, ListItemText } from "@material-ui/core";
-import {
-  ExpandLess,
-  ExpandMore,
-  Repeat,
-  //Shuffle,
-  LibraryMusic,
-  MusicNote,
-  RepeatOne,
-} from "@material-ui/icons";
+import { ListItemIcon, ListItem, ListItemText } from "@material-ui/core";
+import { MusicNote } from "@material-ui/icons";
 import styles from "./bottomBar.module.css";
 import { mainContext } from "../../Providers/MainProvider";
 import { ControlContext } from "../../Providers/ControlProvider";
@@ -64,10 +56,7 @@ const createItemData = memoize(
 const BottomBar = ({ suras }) => {
   const { surasNames, setCurrSura, currSura } = useContext(mainContext);
   //
-  const {
-    dispatch,
-    state: { playerState, isRepeated },
-  } = useContext(ControlContext);
+  const { dispatch } = useContext(ControlContext);
   //
   const allSurasIndex = suras.split(",");
   //
@@ -79,41 +68,8 @@ const BottomBar = ({ suras }) => {
     dispatch
   );
 
-  //* handle toggling between playlist and expanded states
-  const handleClick = () => {
-    dispatch({
-      type: "SET_PLAYERSTATE",
-      payload: playerState === "expanded" ? "playlist" : "expanded",
-    });
-  };
-
-  //* handle repeat one sura
-
-  const handleRepeat = () => {
-    dispatch({
-      type: "SET_REPEAT",
-    });
-  };
-
   return (
     <div className={styles.container}>
-      <Box className={styles.inner_container} boxShadow={2}>
-        <LibraryMusic fontSize="large" />
-        {!isRepeated ? (
-          <Repeat fontSize="large" onClick={handleRepeat} />
-        ) : (
-          <RepeatOne fontSize="large" onClick={handleRepeat} />
-        )}
-        {/* <Shuffle fontSize="large" />*/}
-        {playerState === "playlist" ? (
-          <ExpandMore fontSize="large" onClick={handleClick} />
-        ) : (
-          <ExpandLess fontSize="large" onClick={handleClick} />
-        )}
-      </Box>
-      {
-        //TODO: search about react-window's lazy loading
-      }
       <AutoSizer>
         {({ width }) => (
           <List

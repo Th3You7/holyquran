@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme) => ({}));
 
 const CurrReciter = (props) => {
   const classes = useStyles(props);
-
   return (
     <Grid
       className={classes.root}

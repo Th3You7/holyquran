@@ -16,13 +16,17 @@ const MainProvider = ({ children }) => {
   const initCurrSura = {
     number: null,
     name: "",
+    translate: "",
     index: null,
   };
 
+  //* fetch all needed data
   const [data, setData] = useState([]);
+  const [surasNames, setSurasNames] = useState([]);
+
+  //
   const [currReciter, setCurrReciter] = useState(initCurrReciter);
   const [currSura, setCurrSura] = useState(initCurrSura);
-  const [surasNames, setSurasNames] = useState([]);
 
   useEffect(() => {
     const fetching = async () => setData(await fetchAllReaders());
@@ -33,6 +37,8 @@ const MainProvider = ({ children }) => {
     const fetching = async () => setSurasNames(await fetchAllSuras());
     fetching();
   }, []);
+
+  console.log(currReciter.suras);
 
   return (
     <mainContext.Provider

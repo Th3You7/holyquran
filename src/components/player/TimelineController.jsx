@@ -1,72 +1,49 @@
 import React, { useContext, useReducer, useEffect, useCallback } from "react";
-import { Slider, Typography, Box } from "@material-ui/core";
-import { withStyles, makeStyles } from "@material-ui/styles";
+import { Grid, Typography, Slider } from "@material-ui/core";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import theme from "../../Providers/ThemeProvider";
 import { ControlContext } from "../../Providers/ControlProvider";
 
-//* Creating a slider for expanded player view
-const MaxSlider = withStyles({
+const PrettoSlider = withStyles({
   root: {
-    height: 6,
+    color: theme.palette.primary.main,
   },
   thumb: {
     height: 16,
     width: 16,
-    marginTop: -5.3,
+    backgroundColor: "#fff",
+    border: "4px solid currentColor",
+
+    marginTop: -4,
     marginLeft: -8,
-    "&::before": {
-      content: "''",
-      height: "inherit",
-      width: "inherit",
-      position: "absolute",
-      transform: "scale(1.6)",
-      borderRadius: "50px",
-      border: "1px solid",
+    "&:focus, &:hover, &$active": {
+      boxShadow: "inherit",
     },
   },
+  active: {},
+
   track: {
-    height: 6,
+    height: 8,
     borderRadius: 4,
   },
   rail: {
-    height: 6,
+    height: 8,
     borderRadius: 4,
   },
 })(Slider);
 
-//* Creating a slider for minimized player view
-const MinSlider = withStyles({
-  root: {
-    height: 6,
-  },
-  thumb: {
-    display: "none",
-  },
-
-  track: {
-    height: 6,
-    //borderRadius: 4,
-  },
-  rail: {
-    height: 6,
-    //borderRadius: 4
-  },
-})(Slider);
-
-const useStyle = makeStyles((theme) => ({
-  innerContainer: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: 2,
-  },
+const useStyles = makeStyles(() => ({
   container: {
-    margin: "0 auto",
-    width: "90%",
+    flex: "0 1 45%",
+  },
+
+  slider: {
+    flexGrow: 2,
   },
 }));
 
-const TimelineController = () => {
-  const classes = useStyle();
+const TimelineController2 = () => {
+  const classes = useStyles();
 
   const {
     player,
@@ -146,38 +123,31 @@ const TimelineController = () => {
     }
   };
 
-  if (playerState === "reduced") {
-    return (
-      <MinSlider
-        defaultValue={0}
-        value={currTime}
-        max={player ? player.duration : 0}
-        onChange={handleTimeChange}
-        onClick={(e) => e.stopPropagation()}
-      />
-    );
-  }
-
   return (
-    <Box className={classes.container}>
-      <Box className={classes.innerContainer}>
-        <Typography variant="body1">{setTimeFormat(currTime)}</Typography>
-        <Typography variant="body1">
-          {player
-            ? player.duration
+    <div className={classes.container}>
+      <Grid container alignItems="center" justify="center">
+        <Grid item style={{ marginRight: "10px" }}>
+          <Typography>{setTimeFormat(currTime)}</Typography>
+        </Grid>
+        <Grid item className={classes.slider}>
+          <PrettoSlider
+            defaultValue={0}
+            value={currTime}
+            max={player ? player.duration : 0}
+            onChange={handleTimeChange}
+            onClick={(e) => e.stopPropagation()}
+          />
+        </Grid>
+        <Grid item style={{ marginLeft: "10px" }}>
+          <Typography>
+            {player && player.duration
               ? setTimeFormat(Math.trunc(player.duration))
-              : setTimeFormat(0)
-            : setTimeFormat(0)}
-        </Typography>
-      </Box>
-      <MaxSlider
-        defaultValue={0}
-        value={currTime}
-        max={player ? player.duration : 0}
-        onChange={handleTimeChange}
-      />
-    </Box>
+              : setTimeFormat(0)}
+          </Typography>
+        </Grid>
+      </Grid>
+    </div>
   );
 };
 
-export default TimelineController;
+export default TimelineController2;
