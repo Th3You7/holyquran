@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     flex: "0 1 100%",
     [theme.breakpoints.up("md")]: {
+      flex: "0 1 45%",
+    },
+    [theme.breakpoints.up("lg")]: {
       flex: "0 1 40%",
     },
   },

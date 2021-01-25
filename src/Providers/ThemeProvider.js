@@ -1,28 +1,22 @@
-import { createMuiTheme } from "@material-ui/core";
+import React, { createContext } from "react";
+import { createMuiTheme, ThemeProvider, CssBaseline } from "@material-ui/core";
+import useDarkTheme from "../hooks/useDarkTheme";
 
-const theme = createMuiTheme({
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 576,
-      md: 768,
-      lg: 992,
-      xl: 1200,
-    },
-  },
+export const MuiThemeContext = createContext();
 
-  palette: {
-    type: "dark",
-    primary: {
-      main: "#005036",
-      light: "#3b8360",
-      dark: "#002c10",
-    },
-  },
+const MuiThemeProvider = ({ children }) => {
+  const [theme, toggleTheme] = useDarkTheme();
 
-  typography: {
-    fontFamily: '"Quicksand", sans-serif',
-  },
-});
+  const currTheme = createMuiTheme(theme);
 
-export default theme;
+  return (
+    <MuiThemeContext.Provider value={{ theme, toggleTheme }}>
+      <ThemeProvider theme={currTheme}>
+        <CssBaseline />
+        {children}
+      </ThemeProvider>
+    </MuiThemeContext.Provider>
+  );
+};
+
+export default MuiThemeProvider;

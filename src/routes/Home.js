@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Cards, Header, TemporaryDrawer } from "../components";
+import { Header, Cards, TemporaryDrawer } from "../components";
 
 const Home = () => {
-  let [state, setState] = useState(false);
-
+  const [state, setState] = useState(false);
   const toggleDrawer = (event) => {
     if (
+      event &&
       event.type === "keydown" &&
       (event.key === "Tab" || event.key === "Shift")
     ) {
@@ -14,11 +14,10 @@ const Home = () => {
 
     setState(!state);
   };
-
   return (
     <>
-      <Header openDrawer={(e) => toggleDrawer(e)} />
-      <TemporaryDrawer toggleDrawer={toggleDrawer} state={state} />
+      <TemporaryDrawer state={state} toggleDrawer={toggleDrawer} />
+      <Header toggleDrawer={toggleDrawer} />
       <Cards />
     </>
   );

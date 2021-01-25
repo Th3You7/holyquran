@@ -4,6 +4,12 @@ import { fetchAllReaders, fetchAllSuras } from "../api/fetchApi";
 export const mainContext = React.createContext();
 
 const MainProvider = ({ children }) => {
+  // true === darktheme, false === lighttheme
+  const [theme, setTheme] = useState(false);
+
+  //handling theme
+  const handleTheme = () => setTheme(!theme);
+  //
   const initCurrReciter = {
     id: null,
     name: "",
@@ -47,6 +53,8 @@ const MainProvider = ({ children }) => {
         currReciter,
         currSura,
         surasNames,
+        theme,
+        handleTheme,
         setCurrReciter,
         setCurrSura,
       }}

@@ -64,7 +64,7 @@ const Player = () => {
             <KeyboardArrowDownOutlined className={classes.icon} />
           </IconButton>
         </Grid>
-        {width < 786 ? (
+        {width < 768 ? (
           <Grid item>
             <IconButton style={{ padding: 0 }} onClick={handlePlaylist}>
               <ListRounded className={classes.icon} />
@@ -83,7 +83,7 @@ const Player = () => {
         item
         container
         alignItems="center"
-        justify="space-between"
+        justify="space-around"
         style={{ flexGrow: 1.5 }}
       >
         <Grid item>

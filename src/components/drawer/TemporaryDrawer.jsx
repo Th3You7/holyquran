@@ -35,7 +35,7 @@ const useStyles = makeStyles({
   },
 
   container: {
-    margin: "1.5rem 1rem",
+    margin: ".3rem",
   },
 });
 

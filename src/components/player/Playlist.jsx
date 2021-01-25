@@ -99,6 +99,7 @@ const Playlist = (props) => {
   } = useContext(mainContext);
   //
   const allSurasIndex = suras.split(",");
+  console.log(allSurasIndex);
   //
   const itemData = createItemData(
     allSurasIndex,

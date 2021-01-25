@@ -15,6 +15,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: (props) =>
       props.ultraMinimized ? "24px" : props.minimized ? "40px" : "48px",
   },
+
+  playPauseBtn: {
+    border: "1px solid",
+    borderColor: theme.palette.grey[700],
+  },
   controlIcons: {
     fontSize: (props) => (props.minimized ? "24px" : "36px"),
   },
@@ -83,7 +88,7 @@ const Controller = (props) => {
   const playPauseBtn = () => {
     return player ? (
       isSeeking || isLoading ? (
-        <IconButton>
+        <IconButton className={classes.playPauseBtn}>
           <PlayArrowRounded className={classes.playPauseIcon} />
         </IconButton>
       ) : isSeeked || isLoaded ? (
@@ -92,6 +97,7 @@ const Controller = (props) => {
           onClick={() => {
             dispatch({ type: "SET_ISPLAYING", payload: !isPlaying });
           }}
+          className={classes.playPauseBtn}
         >
           {isPlaying ? (
             <PauseRounded className={classes.playPauseIcon} />
@@ -100,12 +106,12 @@ const Controller = (props) => {
           )}
         </IconButton>
       ) : (
-        <IconButton>
+        <IconButton className={classes.playPauseBtn}>
           <PlayArrowRounded className={classes.playPauseIcon} />
         </IconButton>
       )
     ) : (
-      <IconButton>
+      <IconButton className={classes.playPauseBtn}>
         <PlayArrowRounded className={classes.playPauseIcon} />
       </IconButton>
     );

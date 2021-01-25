@@ -1,12 +1,17 @@
-import React from "react";
-import { FormGroup, FormControlLabel, Switch } from "@material-ui/core";
+import React, { useContext } from "react";
+import { IconButton } from "@material-ui/core";
+import { MuiThemeContext } from "../../Providers/ThemeProvider";
+import { Brightness4Rounded, Brightness7Rounded } from "@material-ui/icons/";
 
-export default function SwitchLabels() {
+export default function Switch() {
+  const { theme, toggleTheme } = useContext(MuiThemeContext);
+  const {
+    palette: { type },
+  } = theme;
+
   return (
-    <FormGroup>
-      <FormControlLabel
-        control={<Switch checked={{}} onChange={{}} name="checked" />}
-      />
-    </FormGroup>
+    <IconButton onClick={toggleTheme}>
+      {type === "light" ? <Brightness4Rounded /> : <Brightness7Rounded />}
+    </IconButton>
   );
 }

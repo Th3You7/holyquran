@@ -16,6 +16,8 @@ const useStyles = makeStyles((theme) => ({
 
   appBar: {
     paddingRight: theme.spacing(5),
+    top: 0,
+    bottom: "auto",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -70,19 +72,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Header({ openDrawer }) {
+export default function Header({ toggleDrawer }) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <AppBar className={classes.appBar}>
+      <AppBar className={classes.appBar} position="fixed">
         <Toolbar>
           <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
-            onClick={(e) => openDrawer(e)}
+            onClick={(e) => toggleDrawer(e)}
           >
             <Menu />
           </IconButton>

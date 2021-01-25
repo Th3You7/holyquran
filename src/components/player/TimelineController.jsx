@@ -1,12 +1,11 @@
 import React, { useContext, useReducer, useEffect, useCallback } from "react";
 import { Grid, Typography, Slider } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import theme from "../../Providers/ThemeProvider";
 import { ControlContext } from "../../Providers/ControlProvider";
 
 const PrettoSlider = withStyles({
   root: {
-    color: theme.palette.primary.main,
+    color: "#005036",
   },
   thumb: {
     height: 16,
