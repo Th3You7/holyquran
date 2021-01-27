@@ -19,12 +19,14 @@ const useStyles = makeStyles((theme) => ({
   box: {
     //backgroundColor: "#ebeff1",
     height: "100%",
+    boxShadow: theme.shadows[2],
   },
 
   back: {
     display: "flex",
     alignItems: "center",
     padding: theme.spacing(0.5),
+    borderRadius: 2,
   },
 
   list: {
@@ -62,10 +64,11 @@ const Row = memo((props) => {
     return (
       <div style={style} className={classes.row}>
         <CurrSura
-          index={index + 1}
+          index={index}
           handleClick={handleClick}
           name={transliteration_en}
           translate={translation_en}
+          allSurasIndex={allSurasIndex}
         />
       </div>
     );

@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Grid, Box, Typography, IconButton } from "@material-ui/core";
-import { FavoriteRounded } from "@material-ui/icons";
+import {
+  PlayArrowRounded,
+  PauseRounded,
+  StopRounded,
+} from "@material-ui/icons";
 
 import { makeStyles } from "@material-ui/core/styles";
+import { mainContext } from "../../Providers/MainProvider";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,7 +22,11 @@ const useStyles = makeStyles((theme) => ({
 
   title: { color: theme.palette.text.primary, fontWeight: 600 },
 
-  subtitle: { color: "grey", textTransform: "uppercase" },
+  subtitle: {
+    color: "grey",
+    textTransform: "uppercase",
+    fontSize: theme.spacing(1.5),
+  },
 
   index: {
     height: theme.spacing(4),
@@ -31,30 +40,38 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "50%",
   },
 
-  favourite: {
-    color: theme.palette.background.default,
+  playPause: {
+    color: theme.palette.text.primary,
+    fontSize: 24,
   },
 }));
 
-function CurrSura({ index, translate, name, handleClick }) {
+function CurrSura({ index, translate, name, handleClick, allSurasIndex }) {
   const classes = useStyles();
+  const {
+    currSura: { number },
+  } = useContext(mainContext);
 
   return (
-    <Grid container alignItems="center" className={classes.root}>
-      <Grid item style={{ marginRight: "24px", alignSelf: "flex-start" }}>
-        <Box className={classes.index}>{index}</Box>
+    <Grid container alignItems="center" className={classes.root} wrap="nowrap">
+      <Grid item style={{ marginRight: "12px", alignSelf: "flex-start" }}>
+        <Box className={classes.index}>{index + 1}</Box>
       </Grid>
       <Grid item style={{ flexGrow: 2 }}>
         <Typography variant="subtitle1" className={classes.title}>
           {name}
         </Typography>
-        <Typography variant="subtitle2" className={classes.subtitle}>
+        <Typography noWrap variant="subtitle2" className={classes.subtitle}>
           {translate}
         </Typography>
       </Grid>
       <Grid item>
         <IconButton onClick={handleClick}>
-          <FavoriteRounded className={classes.favourite} />
+          {Number(allSurasIndex[index]) === number ? (
+            <PlayArrowRounded className={classes.playPause} />
+          ) : (
+            <StopRounded className={classes.playPause} />
+          )}
         </IconButton>
       </Grid>
     </Grid>

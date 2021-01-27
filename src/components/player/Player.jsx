@@ -14,6 +14,7 @@ import {
 } from "@material-ui/icons/";
 
 import { ControlContext } from "../../Providers/ControlProvider";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     padding: `8px 24px`,
     height: "100%",
     borderRadius: "4px",
+    boxShadow: theme.shadows[2],
   },
 
   icon: {
@@ -38,8 +40,22 @@ const Player = () => {
     state: { isRepeated },
   } = useContext(ControlContext);
 
+  const history = useHistory();
+
   const handleReduce = () => {
     dispatch({ type: "SET_PLAYERSTATE", payload: "reduced" });
+
+    history.push({
+      pathname: "/",
+      state: {
+        from: {
+          pathname: "/player",
+        },
+        to: {
+          pathname: "/",
+        },
+      },
+    });
   };
 
   const handlePlaylist = () => {
@@ -84,7 +100,7 @@ const Player = () => {
         container
         alignItems="center"
         justify="space-around"
-        style={{ flexGrow: 1.5 }}
+        style={{ flexGrow: 10 }}
       >
         <Grid item>
           <IconButton onClick={handleRepeat} style={{ padding: 0 }}>

@@ -3,6 +3,7 @@ import { Grid, Avatar, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import img from "../../imgs/quran.jpg";
 import { mainContext } from "../../Providers/MainProvider";
+import { ControlContext } from "../../Providers/ControlProvider";
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -28,8 +29,9 @@ const useStyles = makeStyles((theme) => ({
 
 const ArtWork = (props) => {
   const { currReciter, currSura } = useContext(mainContext);
+  const { width } = useContext(ControlContext);
 
-  const { maximized } = props;
+  const { maximized, minimized } = props;
   const classes = useStyles(props);
 
   return (
@@ -39,7 +41,7 @@ const ArtWork = (props) => {
       wrap="nowrap"
       direction={maximized ? "column" : "row"}
     >
-      {true ? (
+      {width < 576 && minimized ? null : (
         <Grid item style={{ flexGrow: 1 }}>
           <Avatar
             variant={maximized ? "rounded" : "circular"}
@@ -47,7 +49,7 @@ const ArtWork = (props) => {
             src={img}
           />
         </Grid>
-      ) : null}
+      )}
       <Grid
         item
         container
@@ -55,7 +57,7 @@ const ArtWork = (props) => {
         style={{ textAlign: maximized ? "center" : "left" }}
       >
         <Grid item>
-          <Typography variant="subtitle1" className={classes.title}>
+          <Typography noWrap variant="subtitle1" className={classes.title}>
             {currReciter.name}
           </Typography>
         </Grid>

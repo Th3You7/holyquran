@@ -41,12 +41,12 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const TimelineController2 = () => {
+const TimelineController = () => {
   const classes = useStyles();
 
   const {
     player,
-    state: { isPlaying, playerState },
+    state: { isPlaying },
   } = useContext(ControlContext);
 
   const initTimeState = {
@@ -79,7 +79,7 @@ const TimelineController2 = () => {
 
   //* updating current time of audio
   const handleTimeUpdate = useCallback(() => {
-    const currentTime = Math.floor(player.currentTime);
+    const currentTime = Math.ceil(player.currentTime);
     timeDispatch({ type: "SET_CURRTIME", payload: currentTime });
   }, [player, timeDispatch]);
 
@@ -125,7 +125,13 @@ const TimelineController2 = () => {
   return (
     <div className={classes.container}>
       <Grid container alignItems="center" justify="center">
-        <Grid item style={{ marginRight: "10px" }}>
+        <Grid
+          item
+          style={{
+            marginRight: "10px",
+            width: player && player.currentTime >= 3600 ? "54px" : "42px",
+          }}
+        >
           <Typography>{setTimeFormat(currTime)}</Typography>
         </Grid>
         <Grid item className={classes.slider}>
@@ -149,4 +155,4 @@ const TimelineController2 = () => {
   );
 };
 
-export default TimelineController2;
+export default TimelineController;

@@ -10,6 +10,9 @@ import { ControlContext } from "../../Providers/ControlProvider";
 const useStyles = makeStyles((theme) => ({
   container: {
     padding: theme.spacing(1),
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[7],
+    width: "100%",
   },
 }));
 
@@ -20,7 +23,7 @@ const MinimizedPlayer = () => {
   return (
     <Grid className={classes.container} container alignItems="center">
       <Grid item style={{ flexGrow: 2 }}>
-        <CurrReciter />
+        <CurrReciter minimized />
       </Grid>
       <Grid item style={{ flexGrow: 1 }}>
         {width <= 576 ? (

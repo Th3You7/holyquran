@@ -1,4 +1,5 @@
 import React, { useContext, useRef, useCallback, useEffect } from "react";
+import { Box } from "@material-ui/core";
 
 import { mainContext } from "../../Providers/MainProvider";
 import { ControlContext } from "../../Providers/ControlProvider";
@@ -8,16 +9,18 @@ import MaximizedPlayer from "./MaximizedPlayer";
 import MinimizedPlayer from "./MinimizedPlayer";
 
 export default function MediaPlayer() {
-  const { currReciter, currSura } = useContext(mainContext);
-
   const {
     setPlayer,
     dispatch,
     state: { playerState, isPlaying, isRepeated, isSeeking, isSeeked },
   } = useContext(ControlContext);
 
-  const { server } = currReciter;
-  const { number } = currSura;
+  const { currReciter, currSura, setCurrSura, surasNames } = useContext(
+    mainContext
+  );
+
+  const { server, suras } = currReciter;
+  const { number, index } = currSura;
 
   const audioPlayer = useRef();
 
@@ -49,12 +52,24 @@ export default function MediaPlayer() {
 
   //* handling audio player if ended
   const handleEnd = () => {
-    audioPlayer.current.currentTime = 0;
+    const allSurasIndex = suras.split(",").map((n) => Number(n));
 
-    //NOTE: if reapted selected it will replay itself; else, it will end
-    !isRepeated
-      ? dispatch({ type: "SET_ISPLAYING", payload: false })
-      : audioPlayer.current.play();
+    //NOTE: if repeated selected it will replay itself; else, it will end
+    if (isRepeated) {
+      audioPlayer.current.play();
+      audioPlayer.current.currentTime = 0;
+    } else if (!allSurasIndex[index + 1]) {
+      dispatch({ type: "SET_ISPLAYING", payload: false });
+    } else {
+      const { number, transliteration_en } = surasNames.find(
+        (x) => x.number === allSurasIndex[index + 1]
+      );
+      setCurrSura({
+        index: index + 1,
+        name: transliteration_en,
+        number,
+      });
+    }
   };
 
   //*handling loading data
@@ -95,7 +110,14 @@ export default function MediaPlayer() {
   }, [number, server, playPauseAudio]);
 
   return (
-    <>
+    <Box
+      style={{
+        position: playerState === "reduced" ? "fixed" : "static",
+        top: "auto",
+        bottom: 0,
+        width: "100%",
+      }}
+    >
       {playerState === "reduced" ? <MinimizedPlayer /> : <MaximizedPlayer />}
 
       <audio
@@ -106,6 +128,6 @@ export default function MediaPlayer() {
         onSeeking={handleSeeking}
         onSeeked={handleSeeked}
       />
-    </>
+    </Box>
   );
 }

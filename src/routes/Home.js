@@ -1,8 +1,16 @@
 import React, { useState } from "react";
-import { Header, Cards, TemporaryDrawer } from "../components";
+import { Box } from "@material-ui/core";
 
-const Home = () => {
+import { Route } from "react-router-dom";
+import { Header, Cards, TemporaryDrawer, MediaPlayer } from "../components";
+
+const Home = ({ bg }) => {
   const [state, setState] = useState(false);
+
+  document.body.style.overflowY = "auto";
+  document.body.style.overflowX = "hidden";
+
+  //
   const toggleDrawer = (event) => {
     if (
       event &&
@@ -15,11 +23,12 @@ const Home = () => {
     setState(!state);
   };
   return (
-    <>
+    <Box display={{ position: "relative" }}>
       <TemporaryDrawer state={state} toggleDrawer={toggleDrawer} />
       <Header toggleDrawer={toggleDrawer} />
       <Cards />
-    </>
+      {bg && <Route path="/" children={<MediaPlayer />} />}
+    </Box>
   );
 };
 

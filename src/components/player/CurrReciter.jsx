@@ -5,6 +5,8 @@ import { IconButton, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { FavoriteRounded } from "@material-ui/icons";
 
+//TODO: Add favourite function later
+
 const useStyles = makeStyles((theme) => ({}));
 
 const CurrReciter = (props) => {
@@ -17,12 +19,7 @@ const CurrReciter = (props) => {
       justify="space-between"
     >
       <Grid item style={{ flexGrow: 2 }}>
-        <ArtWork />
-      </Grid>
-      <Grid item>
-        <IconButton>
-          <FavoriteRounded />
-        </IconButton>
+        <ArtWork minimized />
       </Grid>
     </Grid>
   );

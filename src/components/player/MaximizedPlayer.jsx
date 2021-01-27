@@ -8,6 +8,7 @@ import { ControlContext } from "../../Providers/ControlProvider";
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: 0,
+    width: "100%",
     height: "100vh",
     [theme.breakpoints.up("md")]: {
       padding: theme.spacing(2),
@@ -49,7 +50,7 @@ export default function MaximizedPlayer() {
     document.body.style.transform = "translateY(-100vh)";
     document.body.style.transition = "all .3s ease";
   } else {
-    document.body.style.transform = "translateY(0)";
+    document.body.style.transform = "none";
     //document.body.style.transition = "all .5s ease";
   }
 
