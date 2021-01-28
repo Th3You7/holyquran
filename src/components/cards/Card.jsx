@@ -52,7 +52,7 @@ export default function Card({ id, name, suras, server, rewaya, count }) {
     pathname: "/player",
     state: {
       from: {
-        pathname: "/",
+        pathname: "/home",
       },
       to: {
         pathname: "/player",

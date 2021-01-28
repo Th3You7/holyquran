@@ -1,10 +1,6 @@
 import React, { useContext } from "react";
 import { Grid, Box, Typography, IconButton } from "@material-ui/core";
-import {
-  PlayArrowRounded,
-  PauseRounded,
-  StopRounded,
-} from "@material-ui/icons";
+import { PlayArrowRounded, StopRounded } from "@material-ui/icons";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { mainContext } from "../../Providers/MainProvider";

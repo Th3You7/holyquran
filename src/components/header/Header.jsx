@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Header({ toggleDrawer }) {
+export default function Header({ toggleDrawer, input, handleChange }) {
   const classes = useStyles();
 
   return (
@@ -96,6 +96,8 @@ export default function Header({ toggleDrawer }) {
               <Search />
             </div>
             <InputBase
+              onChange={handleChange}
+              value={input}
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,

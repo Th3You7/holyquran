@@ -1,8 +1,8 @@
-import { Route, Switch, useLocation } from "react-router-dom";
-import { Home, Player } from "./routes";
+import { Redirect, Route, Switch, useLocation } from "react-router-dom";
+import { Home } from "./routes";
 import ControlProvider from "./Providers/ControlProvider";
-import MainProvider from "./Providers/MainProvider";
 import ThemeProvider from "./Providers/ThemeProvider";
+import { MediaPlayer } from "./components";
 
 function App() {
   const location = useLocation();
@@ -10,22 +10,28 @@ function App() {
 
   return (
     <>
-      <MainProvider>
-        <ThemeProvider>
-          <div className="App">
-            <Switch location={background || location}>
+      <ThemeProvider>
+        <div className="App">
+          <Switch location={background || location}>
+            <ControlProvider>
+              <Route path="/home">
+                <Home />
+              </Route>
+              <Route exact path="/">
+                <Redirect to="/home" />
+              </Route>
+            </ControlProvider>
+          </Switch>
+          <Route
+            path="/"
+            render={() => (
               <ControlProvider>
-                <Route exact path="/">
-                  <Home bg={background} />
-                </Route>
-                <Route path="/player">
-                  <Player />
-                </Route>
+                <MediaPlayer />
               </ControlProvider>
-            </Switch>
-          </div>
-        </ThemeProvider>
-      </MainProvider>
+            )}
+          />
+        </div>
+      </ThemeProvider>
     </>
   );
 }

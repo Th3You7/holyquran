@@ -1,4 +1,7 @@
 import React, { useContext, useRef, useCallback, useEffect } from "react";
+
+import { useLocation } from "react-router-dom";
+
 import { Box } from "@material-ui/core";
 
 import { mainContext } from "../../Providers/MainProvider";
@@ -18,6 +21,8 @@ export default function MediaPlayer() {
   const { currReciter, currSura, setCurrSura, surasNames } = useContext(
     mainContext
   );
+
+  const location = useLocation();
 
   const { server, suras } = currReciter;
   const { number, index } = currSura;
@@ -118,7 +123,11 @@ export default function MediaPlayer() {
         width: "100%",
       }}
     >
-      {playerState === "reduced" ? <MinimizedPlayer /> : <MaximizedPlayer />}
+      {playerState === "reduced" && location.pathname === "/home" ? (
+        <MinimizedPlayer />
+      ) : location.pathname === "/player" ? (
+        <MaximizedPlayer />
+      ) : null}
 
       <audio
         ref={audioPlayer}

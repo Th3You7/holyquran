@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { Box } from "@material-ui/core";
 
-import { Route } from "react-router-dom";
-import { Header, Cards, TemporaryDrawer, MediaPlayer } from "../components";
+import { Header, Cards, TemporaryDrawer } from "../components";
 
-const Home = ({ bg }) => {
+const Home = () => {
   const [state, setState] = useState(false);
+  const [input, setInput] = useState("");
 
   document.body.style.overflowY = "auto";
   document.body.style.overflowX = "hidden";
+
+  //*handling change to filter reciters
+  const handleChange = (e) => {
+    setInput(e.target.value);
+  };
 
   //
   const toggleDrawer = (event) => {
@@ -22,12 +27,16 @@ const Home = ({ bg }) => {
 
     setState(!state);
   };
+
   return (
     <Box display={{ position: "relative" }}>
       <TemporaryDrawer state={state} toggleDrawer={toggleDrawer} />
-      <Header toggleDrawer={toggleDrawer} />
-      <Cards />
-      {bg && <Route path="/" children={<MediaPlayer />} />}
+      <Header
+        toggleDrawer={toggleDrawer}
+        handleChange={handleChange}
+        input={input}
+      />
+      <Cards input={input} />
     </Box>
   );
 };

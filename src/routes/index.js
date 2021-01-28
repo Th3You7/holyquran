@@ -1,2 +1,2 @@
 export { default as Home } from "./Home";
-export { default as Player } from "./Player";
+//TODO: I will add more routes here due to improving the app later;

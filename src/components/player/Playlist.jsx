@@ -101,49 +101,52 @@ const Playlist = (props) => {
     currReciter: { suras },
   } = useContext(mainContext);
   //
-  const allSurasIndex = suras.split(",");
-  console.log(allSurasIndex);
-  //
-  const itemData = createItemData(
-    allSurasIndex,
-    surasNames,
-    setCurrSura,
-    currSura,
-    dispatch
-  );
+  if (suras) {
+    const allSurasIndex = suras.split(",");
 
-  const handleBack = () => {
-    dispatch({ type: "SET_PLAYERSTATE", payload: "expanded" });
-  };
-  return (
-    <Box className={classes.box}>
-      {width < 768 ? (
-        <Box className={classes.back}>
-          <IconButton onClick={handleBack}>
-            <ArrowBackRounded />
-          </IconButton>
+    //
+    const itemData = createItemData(
+      allSurasIndex,
+      surasNames,
+      setCurrSura,
+      currSura,
+      dispatch
+    );
+
+    const handleBack = () => {
+      dispatch({ type: "SET_PLAYERSTATE", payload: "expanded" });
+    };
+    return (
+      <Box className={classes.box}>
+        {width < 768 ? (
+          <Box className={classes.back}>
+            <IconButton onClick={handleBack}>
+              <ArrowBackRounded />
+            </IconButton>
+          </Box>
+        ) : null}
+        <Box className={classes.list}>
+          {
+            //TODO: search about react-window's lazy loading
+          }
+          <AutoSizer>
+            {({ width, height }) => (
+              <List
+                itemCount={allSurasIndex.length}
+                height={deviceWidth < 768 ? height - 60 : height}
+                width={width}
+                itemSize={80}
+                itemData={itemData}
+              >
+                {Row}
+              </List>
+            )}
+          </AutoSizer>
         </Box>
-      ) : null}
-      <Box className={classes.list}>
-        {
-          //TODO: search about react-window's lazy loading
-        }
-        <AutoSizer>
-          {({ width, height }) => (
-            <List
-              itemCount={allSurasIndex.length}
-              height={deviceWidth < 768 ? height - 60 : height}
-              width={width}
-              itemSize={80}
-              itemData={itemData}
-            >
-              {Row}
-            </List>
-          )}
-        </AutoSizer>
       </Box>
-    </Box>
-  );
+    );
+  }
+  return null;
 };
 
 export default Playlist;

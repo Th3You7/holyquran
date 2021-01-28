@@ -13,9 +13,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Cards = () => {
+const Cards = ({ input }) => {
   const { data } = useContext(mainContext);
   const classes = useStyles();
+
+  if (input) {
+    return (
+      <Grid container className={classes.root} spacing={2}>
+        {data
+          .filter((reciter) =>
+            reciter.name.toLowerCase().includes(input.toLowerCase())
+          )
+          .map((filteredReciter) => (
+            <Grid item key={filteredReciter.id} xs={12} sm={6} md={3}>
+              <Card
+                id={filteredReciter.id}
+                name={filteredReciter.name}
+                suras={filteredReciter.suras}
+                server={filteredReciter.Server}
+                rewaya={filteredReciter.rewaya}
+                count={filteredReciter.count}
+              />
+            </Grid>
+          ))}
+      </Grid>
+    );
+  }
 
   return (
     <Grid container className={classes.root} spacing={2}>

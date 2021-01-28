@@ -23,7 +23,7 @@ const MainProvider = ({ children }) => {
   //* fetch all needed data
   const [data, setData] = useState([]);
   const [surasNames, setSurasNames] = useState([]);
-
+  console.log(data);
   //
   const [currReciter, setCurrReciter] = useState(initCurrReciter);
   const [currSura, setCurrSura] = useState(initCurrSura);
@@ -37,8 +37,6 @@ const MainProvider = ({ children }) => {
     const fetching = async () => setSurasNames(await fetchAllSuras());
     fetching();
   }, []);
-
-  console.log(currReciter.suras);
 
   return (
     <mainContext.Provider

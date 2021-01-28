@@ -44,7 +44,8 @@ const Controller = (props) => {
   const { index } = currSura;
 
   //*handling next & prev functionality
-  const handleNextPrev = (num) => {
+  const handleNextPrev = (e, num) => {
+    e.stopPropagation();
     const allSurasIndex = suras.split(",").map((n) => Number(n));
 
     //*case of prev clicked and the current time of player is bigger than or equal to 5s, it will reset to 0;
@@ -94,7 +95,8 @@ const Controller = (props) => {
       ) : isSeeked || isLoaded ? (
         <IconButton
           aria-label="play/pause"
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             dispatch({ type: "SET_ISPLAYING", payload: !isPlaying });
           }}
           className={classes.playPauseBtn}

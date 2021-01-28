@@ -82,6 +82,7 @@ export default function ContinuousSlider() {
   //* handling volume's slider change
   const handleChange = (e, newValue) => {
     volDispatch({ type: "SET_CURRVOL", payload: newValue });
+    e.stopPropagation();
   };
 
   const classes = useStyles();
@@ -90,7 +91,12 @@ export default function ContinuousSlider() {
     <div className={classes.root}>
       <Grid container justify="center" alignItems="center">
         <Grid item>
-          <IconButton onClick={() => volDispatch({ type: "SET_VOLSTATE" })}>
+          <IconButton
+            onClick={(e) => {
+              e.stopPropagation();
+              volDispatch({ type: "SET_VOLSTATE" });
+            }}
+          >
             {!volState || currVol === 0 ? (
               <VolumeOff />
             ) : currVol > 50 ? (

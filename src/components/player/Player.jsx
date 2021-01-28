@@ -46,13 +46,13 @@ const Player = () => {
     dispatch({ type: "SET_PLAYERSTATE", payload: "reduced" });
 
     history.push({
-      pathname: "/",
+      pathname: "/home",
       state: {
         from: {
           pathname: "/player",
         },
         to: {
-          pathname: "/",
+          pathname: "/home",
         },
       },
     });

@@ -25,8 +25,9 @@ const VolumeController = (props) => {
     event.stopPropagation();
   };
 
-  const handleClose = () => {
+  const handleClose = (e) => {
     setAnchorEl(null);
+    e.stopPropagation();
   };
 
   return (

@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import Controller from "./Controller";
 import CurrReciter from "./CurrReciter";
 import VolumeController from "./VolumeController";
@@ -13,15 +14,29 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[7],
     width: "100%",
+    cursor: "pointer",
   },
 }));
 
 const MinimizedPlayer = () => {
-  const { width } = useContext(ControlContext);
+  const { width, dispatch } = useContext(ControlContext);
   const classes = useStyles();
+  const history = useHistory();
+
+  const handleClick = () => {
+    dispatch({ type: "SET_PLAYERSTATE", payload: "expanded" });
+    history.push({
+      pathname: "/player",
+    });
+  };
 
   return (
-    <Grid className={classes.container} container alignItems="center">
+    <Grid
+      className={classes.container}
+      container
+      alignItems="center"
+      onClick={handleClick}
+    >
       <Grid item style={{ flexGrow: 2 }}>
         <CurrReciter minimized />
       </Grid>
