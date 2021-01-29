@@ -1,6 +1,12 @@
 import { useState } from "react";
 
 const initTheme = {
+  props: {
+    MuiLink: {
+      underline: "none",
+      color: "textPrimary",
+    },
+  },
   breakpoints: {
     values: {
       xs: 0,

@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import {
   Drawer,
   List,
+  Button,
   ListItem,
   ListItemIcon,
   ListItemText,
@@ -49,17 +50,32 @@ export default function TemporaryDrawer({ toggleDrawer, state }) {
           <Switch />
         </div>
         <Divider />
-        {listItems.map((item) => (
-          <ListItem
-            button
-            key={item.text}
-            onClick={(e) => toggleDrawer(e)}
-            onKeyDown={(e) => toggleDrawer(e)}
-          >
-            <ListItemIcon>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.text} />
-          </ListItem>
-        ))}
+        {listItems.map((item) =>
+          item.text === "Github" ? (
+            <ListItem
+              button
+              component="button"
+              key={item.text}
+              onClick={(e) => toggleDrawer(e)}
+              onKeyDown={(e) => toggleDrawer(e)}
+              target="_blank"
+              href="https://www.github.com/Th3You7/HolyQuran-App"
+            >
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.text} />
+            </ListItem>
+          ) : (
+            <ListItem
+              button
+              key={item.text}
+              onClick={(e) => toggleDrawer(e)}
+              onKeyDown={(e) => toggleDrawer(e)}
+            >
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.text} />
+            </ListItem>
+          )
+        )}
       </List>
       <Divider />
     </div>

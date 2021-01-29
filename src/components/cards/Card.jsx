@@ -10,16 +10,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
   },
 
-  link: {
-    "&:hover": {
-      textDecoration: "none",
-    },
-
-    "&:active": {
-      color: theme.palette.warning.main,
-    },
-  },
-
   typography: {
     color: theme.palette.text.primary,
 
@@ -62,12 +52,7 @@ export default function Card({ id, name, suras, server, rewaya, count }) {
 
   return (
     <Paper className={classes.paper} variant="outlined">
-      <Link
-        component={RouterLink}
-        to={link}
-        className={classes.link}
-        onClick={handleClick}
-      >
+      <Link component={RouterLink} to={link} onClick={handleClick}>
         <Typography noWrap className={classes.typography}>
           {name.indexOf("(") > 0 ? name.slice(0, name.indexOf("(")) : name}
         </Typography>

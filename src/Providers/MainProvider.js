@@ -21,7 +21,7 @@ const MainProvider = ({ children }) => {
   };
 
   //* fetch all needed data
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [surasNames, setSurasNames] = useState([]);
   console.log(data);
   //

@@ -10,7 +10,7 @@ const Home = () => {
   document.body.style.overflowY = "auto";
   document.body.style.overflowX = "hidden";
 
-  //*handling change to filter reciters
+  //*handling changes to filter reciters
   const handleChange = (e) => {
     setInput(e.target.value);
   };
