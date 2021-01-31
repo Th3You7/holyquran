@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+<!-- # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -67,4 +67,42 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 ### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify) -->
+
+# HolyQuran is a PWA made with ReactJS, React-Router & Material-UI
+
+![app in desktop, large width](src/imgs/1.png)
+![app in desktop, large width](src/imgs/2.png)
+![app in desktop, large width](src/imgs/3.png)
+
+## It is responsive with all devices's screens
+
+    This App is fully responsive
+
+![app in small  width](src/imgs/6.png)
+![app in small  width](src/imgs/7.png)
+![app in small  width](src/imgs/5.png)
+![app in small  width](src/imgs/4.png)
+
+## Dark Theme v Light Theme
+
+    This app provides 2 themes. You can run it with your favourite one
+
+![app in small  width](src/imgs/10.png)
+![app in small  width](src/imgs/11.png)
+![app in small  width](src/imgs/12.png)
+![app in small  width](src/imgs/4.png)
+
+## Run It Locally
+
+1. Clone the repo
+2. Do a `npm install`
+3. Run it using `npm start`
+
+## Install it
+
+You can install this App in your device
+
+## Credits Goes To:
+
+1.[mp3Quran] (https://www.mp3quran.net/ar) 2.[Ylight Music] (https://github.com/ShivamJoker/Ylight-Music/)
