@@ -10,30 +10,32 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
     width: "100%",
     height: "100vh",
-    [theme.breakpoints.up("md")]: {
-      padding: theme.spacing(2),
-    },
-    [theme.breakpoints.up("lg")]: {
-      padding: theme.spacing(4),
-    },
+    // [theme.breakpoints.up("md")]: {
+    //   padding: theme.spacing(2),
+    // },
+    // [theme.breakpoints.up("lg")]: {
+    //   padding: theme.spacing(4),
+    // },
   },
 
   player: {
     height: "100%",
     flex: "0 1 100%",
-    [theme.breakpoints.up("md")]: {
-      flex: "0 1 45%",
-    },
-    [theme.breakpoints.up("lg")]: {
-      flex: "0 1 40%",
-    },
+    // [theme.breakpoints.up("md")]: {
+    //   flex: "0 1 70%",
+    //   padding: theme.spacing(4),
+    // },
+    // [theme.breakpoints.up("lg")]: {
+    //   flex: "0 1 50%",
+    // },
   },
 
   playlist: {
     height: "100%",
     flex: "0 1 100%",
     [theme.breakpoints.up("md")]: {
-      flex: "0 1 45%",
+      flex: "0 1 70%",
+      padding: theme.spacing(4),
     },
   },
 }));
@@ -58,7 +60,7 @@ export default function MaximizedPlayer() {
     <Grid
       container
       alignItems="center"
-      justify="space-between"
+      justify="center"
       className={classes.root}
     >
       <Grid item className={classes.player}>

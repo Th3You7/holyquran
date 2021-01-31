@@ -19,24 +19,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MinimizedPlayer = () => {
-  const { width, dispatch } = useContext(ControlContext);
+  const { width } = useContext(ControlContext);
   const classes = useStyles();
-  const history = useHistory();
-
-  const handleClick = () => {
-    dispatch({ type: "SET_PLAYERSTATE", payload: "expanded" });
-    history.push({
-      pathname: "/player",
-    });
-  };
 
   return (
-    <Grid
-      className={classes.container}
-      container
-      alignItems="center"
-      onClick={handleClick}
-    >
+    <Grid className={classes.container} container alignItems="center">
       <Grid item style={{ flexGrow: 2 }}>
         <CurrReciter minimized />
       </Grid>

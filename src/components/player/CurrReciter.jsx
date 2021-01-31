@@ -1,22 +1,35 @@
-import React from "react";
+import React, { useContext } from "react";
 import ArtWork from "./ArtWork";
+import { useHistory } from "react-router-dom";
 import { IconButton, Grid } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { FavoriteRounded } from "@material-ui/icons";
+
+import { ControlContext } from "../../Providers/ControlProvider";
 
 //TODO: Add favourite function later
 
 const useStyles = makeStyles((theme) => ({}));
 
 const CurrReciter = (props) => {
+  const { dispatch } = useContext(ControlContext);
   const classes = useStyles(props);
+  const history = useHistory();
+
+  const handleClick = () => {
+    dispatch({ type: "SET_PLAYERSTATE", payload: "expanded" });
+    history.push({
+      pathname: "/player",
+    });
+  };
   return (
     <Grid
       className={classes.root}
       container
       alignItems="center"
       justify="space-between"
+      onClick={handleClick}
     >
       <Grid item style={{ flexGrow: 2 }}>
         <ArtWork minimized />

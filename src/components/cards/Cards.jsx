@@ -7,7 +7,7 @@ import { mainContext } from "../../Providers/MainProvider";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: "60px 30px ",
+    padding: "85px 30px 60px ",
     [theme.breakpoints.up("sm")]: {
       padding: "80px 40px ",
     },
@@ -18,6 +18,7 @@ const Cards = ({ input }) => {
   const { data } = useContext(mainContext);
   const classes = useStyles();
 
+  //* skeletons
   if (!data) {
     return (
       <Grid container className={classes.root} spacing={2}>
@@ -30,7 +31,7 @@ const Cards = ({ input }) => {
     );
   }
 
-  //*if you enter a name if the search bar it will render the filtered names
+  //*if you enter a name in the search bar it will render the filtered names
   if (input) {
     return (
       <Grid container className={classes.root} spacing={2}>

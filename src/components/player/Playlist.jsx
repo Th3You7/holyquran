@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
   box: {
     //backgroundColor: "#ebeff1",
     height: "100%",
-    boxShadow: theme.shadows[2],
   },
 
   back: {
@@ -92,7 +91,7 @@ const Playlist = (props) => {
   const classes = useStyles(props);
   //
   const { width, dispatch } = useContext(ControlContext);
-  const deviceWidth = width;
+  //const deviceWidth = width;
   //
   const {
     surasNames,
@@ -118,13 +117,18 @@ const Playlist = (props) => {
     };
     return (
       <Box className={classes.box}>
-        {width < 768 ? (
+        {/* {width < 768 ? (
           <Box className={classes.back}>
             <IconButton onClick={handleBack}>
               <ArrowBackRounded />
             </IconButton>
           </Box>
-        ) : null}
+        ) : null} */}
+        <Box className={classes.back}>
+          <IconButton onClick={handleBack}>
+            <ArrowBackRounded />
+          </IconButton>
+        </Box>
         <Box className={classes.list}>
           {
             //TODO: search about react-window's lazy loading
@@ -133,7 +137,7 @@ const Playlist = (props) => {
             {({ width, height }) => (
               <List
                 itemCount={allSurasIndex.length}
-                height={deviceWidth < 768 ? height - 60 : height}
+                height={height - 60}
                 width={width}
                 itemSize={80}
                 itemData={itemData}

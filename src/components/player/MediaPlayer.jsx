@@ -59,7 +59,7 @@ export default function MediaPlayer() {
   const handleEnd = () => {
     const allSurasIndex = suras.split(",").map((n) => Number(n));
 
-    //NOTE: if repeated selected it will replay itself; else, it will end
+    //*NOTE: if repeated selected it will replay itself; else, it will end
     if (isRepeated) {
       audioPlayer.current.play();
       audioPlayer.current.currentTime = 0;

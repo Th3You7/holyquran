@@ -5,10 +5,10 @@
 }
 
 /* * Reset Configs */
-body {
-  /*padding: 0;
-  margin: 0;*/
+body,
+html {
+  padding: 0;
+  margin: 0;
   width: 100%;
-
   font-family: "Quicksand", sans-serif;
 }

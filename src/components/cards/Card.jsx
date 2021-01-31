@@ -20,11 +20,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Card({ id, name, suras, server, rewaya, count }) {
-  const { currReciter, setCurrReciter } = useContext(mainContext);
+  const { surasNames, setCurrSura, currReciter, setCurrReciter } = useContext(
+    mainContext
+  );
   const { dispatch } = useContext(ControlContext);
   const classes = useStyles();
 
   const handleClick = () => {
+    //* Defining the selected reciter
     setCurrReciter({
       ...currReciter,
       id,
@@ -33,6 +36,20 @@ export default function Card({ id, name, suras, server, rewaya, count }) {
       server,
       rewaya,
       count,
+    });
+
+    //* setting the first available sura in the selected reciter's list of suras
+
+    const allSurasIndex = suras.split(",");
+    const { number, transliteration_en, translation_en } = surasNames.find(
+      (sura) => sura.number === Number(allSurasIndex[0])
+    );
+
+    setCurrSura({
+      number,
+      name: transliteration_en,
+      translate: translation_en,
+      index: 0,
     });
 
     dispatch({ type: "SET_PLAYERSTATE", payload: "expanded" });

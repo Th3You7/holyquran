@@ -72,6 +72,34 @@ const ControlProvider = ({ children }) => {
     }
   };
 
+  const initVolState = {
+    //* it will toggle between 2 states: false for muted & true for unmuted
+    volState: true,
+    currVol: 50,
+  };
+
+  const volReducer = (state, action) => {
+    switch (action.type) {
+      case "SET_VOLSTATE":
+        return {
+          ...state,
+          volState: !state.volState,
+        };
+
+      case "SET_CURRVOL": {
+        return {
+          ...state,
+          volState: true,
+          currVol: action.payload,
+        };
+      }
+
+      default:
+        return;
+    }
+  };
+
+  const [volume, volDispatch] = useReducer(volReducer, initVolState);
   const [state, dispatch] = useReducer(controlReducer, initControlState);
 
   return (
@@ -81,8 +109,10 @@ const ControlProvider = ({ children }) => {
         height,
         player,
         state,
+        volume,
         setPlayer,
         dispatch,
+        volDispatch,
       }}
     >
       {children}

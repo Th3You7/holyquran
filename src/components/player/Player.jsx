@@ -21,9 +21,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.text.primary,
     padding: `8px 24px`,
+    [theme.breakpoints.up("lg")]: {
+      padding: `16px 80px`,
+    },
     height: "100%",
     borderRadius: "4px",
-    boxShadow: theme.shadows[2],
   },
 
   icon: {
@@ -80,13 +82,18 @@ const Player = () => {
             <KeyboardArrowDownOutlined className={classes.icon} />
           </IconButton>
         </Grid>
-        {width < 768 ? (
+        {/* {width < 768 ? (
           <Grid item>
             <IconButton style={{ padding: 0 }} onClick={handlePlaylist}>
               <ListRounded className={classes.icon} />
             </IconButton>
           </Grid>
-        ) : null}
+        ) : null} */}
+        <Grid item>
+          <IconButton style={{ padding: 0 }} onClick={handlePlaylist}>
+            <ListRounded className={classes.icon} />
+          </IconButton>
+        </Grid>
       </Grid>
 
       <Grid item style={{ flexGrow: 1.5 }}>

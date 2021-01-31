@@ -1,3 +1,4 @@
+import React from "react";
 import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 import { Home } from "./routes";
 import ControlProvider from "./Providers/ControlProvider";

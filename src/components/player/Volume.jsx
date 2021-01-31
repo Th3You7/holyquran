@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { Grid, Slider, IconButton } from "@material-ui/core/";
 import { VolumeDown, VolumeOff, VolumeUp } from "@material-ui/icons/";
@@ -39,36 +39,8 @@ const useStyles = makeStyles({
 });
 
 export default function ContinuousSlider() {
-  const { player } = useContext(ControlContext);
+  const { player, volume, volDispatch } = useContext(ControlContext);
 
-  const initVolState = {
-    //* it will toggle between 2 states: false for muted & true for unmuted
-    volState: true,
-    currVol: 50,
-  };
-
-  const volReducer = (state, action) => {
-    switch (action.type) {
-      case "SET_VOLSTATE":
-        return {
-          ...state,
-          volState: !state.volState,
-        };
-
-      case "SET_CURRVOL": {
-        return {
-          ...state,
-          volState: true,
-          currVol: action.payload,
-        };
-      }
-
-      default:
-        return;
-    }
-  };
-
-  const [volume, volDispatch] = useReducer(volReducer, initVolState);
   const { volState, currVol } = volume;
 
   useEffect(() => {

@@ -124,16 +124,35 @@ const Controller = (props) => {
   };
 
   const maximizedController = () => {
+    if (isLoaded) {
+      return (
+        <>
+          <Grid item>
+            <IconButton onClick={(e) => handleNextPrev(e, -1)}>
+              <SkipPreviousRounded className={classes.controlIcons} />
+            </IconButton>
+          </Grid>
+          <Grid item>{playPauseBtn()}</Grid>
+          <Grid item>
+            <IconButton onClick={(e) => handleNextPrev(e, 1)}>
+              <SkipNextRounded className={classes.controlIcons} />
+            </IconButton>
+          </Grid>
+        </>
+      );
+    }
+
+    //* return diasbled buttons to avoid aborting the fetching process of media resource
     return (
       <>
         <Grid item>
-          <IconButton onClick={() => handleNextPrev(-1)}>
+          <IconButton disabled>
             <SkipPreviousRounded className={classes.controlIcons} />
           </IconButton>
         </Grid>
         <Grid item>{playPauseBtn()}</Grid>
         <Grid item>
-          <IconButton onClick={() => handleNextPrev(1)}>
+          <IconButton disabled>
             <SkipNextRounded className={classes.controlIcons} />
           </IconButton>
         </Grid>

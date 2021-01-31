@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Box } from "@material-ui/core";
 
+import Error from "../errors/Error";
 import { Header, Cards, TemporaryDrawer } from "../components";
+import { mainContext } from "../Providers/MainProvider";
 
 const Home = () => {
+  const { data } = useContext(mainContext);
   const [state, setState] = useState(false);
   const [input, setInput] = useState("");
 
@@ -36,7 +39,11 @@ const Home = () => {
         handleChange={handleChange}
         input={input}
       />
-      <Cards input={input} />
+      {data === "Network Error" || typeof data === "number" ? (
+        <Error data={data} />
+      ) : (
+        <Cards input={input} />
+      )}
     </Box>
   );
 };

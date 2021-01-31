@@ -23,7 +23,6 @@ const MainProvider = ({ children }) => {
   //* fetch all needed data
   const [data, setData] = useState(null);
   const [surasNames, setSurasNames] = useState([]);
-  console.log(data);
   //
   const [currReciter, setCurrReciter] = useState(initCurrReciter);
   const [currSura, setCurrSura] = useState(initCurrSura);

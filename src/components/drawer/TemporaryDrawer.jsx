@@ -4,7 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import {
   Drawer,
   List,
-  Button,
   ListItem,
   ListItemIcon,
   ListItemText,
