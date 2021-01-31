@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
 const Row = memo((props) => {
   const classes = useStyles();
   const { index, style, data } = props;
+  const {
+    state: { isLoading },
+  } = useContext(ControlContext);
 
   const { allSurasIndex, surasNames, setCurrSura, currSura, dispatch } = data;
 
@@ -47,6 +50,8 @@ const Row = memo((props) => {
 
     //*handle clicking play btn
     const handleClick = () => {
+      if (isLoading) return;
+
       setCurrSura({
         ...currSura,
         number,

@@ -71,27 +71,25 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 # HolyQuran is a PWA made with ReactJS, React-Router & Material-UI
 
-![app in desktop, large width](src/imgs/1.png)
-![app in desktop, large width](src/imgs/2.png)
-![app in desktop, large width](src/imgs/3.png)
+![app in desktop, large width](imgs/1.png)
+![app in desktop, large width](imgs/2.png)
+![app in desktop, large width](imgs/3.png)
 
 ## It is responsive with all devices's screens
 
-    This App is fully responsive
+This App is fully responsive
 
-![app in small  width](src/imgs/6.png)
-![app in small  width](src/imgs/7.png)
-![app in small  width](src/imgs/5.png)
-![app in small  width](src/imgs/4.png)
+![app in small  width](imgs/6.png)
+![app in small  width](imgs/7.png)
+![app in small  width](imgs/4.png)
 
 ## Dark Theme v Light Theme
 
-    This app provides 2 themes. You can run it with your favourite one
+This app provides 2 themes. You can run it with your favourite one
 
-![app in small  width](src/imgs/10.png)
-![app in small  width](src/imgs/11.png)
-![app in small  width](src/imgs/12.png)
-![app in small  width](src/imgs/4.png)
+![app in small  width](imgs/10.png)
+![app in small  width](imgs/11.png)
+![app in small  width](imgs/12.png)
 
 ## Run It Locally
 
@@ -101,8 +99,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ## Install it
 
-You can install this App in your device
+You can install this App in your device by your browser. it will pop up in the url bar
 
 ## Credits Goes To:
 
-1.[mp3Quran] (https://www.mp3quran.net/ar) 2.[Ylight Music] (https://github.com/ShivamJoker/Ylight-Music/)
+1.[mp3Quran] (https://www.mp3quran.net/ar)
+
+2.[Ylight Music] (https://github.com/ShivamJoker/Ylight-Music/)
+
+## Please open an issue for any bugs
