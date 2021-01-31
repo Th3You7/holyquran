@@ -38,7 +38,6 @@ const Player = () => {
 
   const {
     dispatch,
-    width,
     state: { isRepeated },
   } = useContext(ControlContext);
 

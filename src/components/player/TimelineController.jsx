@@ -46,7 +46,7 @@ const TimelineController = () => {
 
   const {
     player,
-    state: { isPlaying },
+    state: { isPlaying, isLoading },
   } = useContext(ControlContext);
 
   const initTimeState = {
@@ -85,6 +85,7 @@ const TimelineController = () => {
 
   //* handling time value changing
   const handleTimeChange = (e, newValue) => {
+    if (isLoading) return;
     player.currentTime = newValue;
     timeDispatch({ type: "SET_CURRTIME", payload: newValue });
   };
@@ -140,7 +141,6 @@ const TimelineController = () => {
             value={currTime}
             max={player ? player.duration : 0}
             onChange={handleTimeChange}
-            onClick={(e) => e.stopPropagation()}
           />
         </Grid>
         <Grid item style={{ marginLeft: "10px" }}>

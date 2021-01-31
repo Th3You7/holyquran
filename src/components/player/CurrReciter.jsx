@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
 import ArtWork from "./ArtWork";
 import { useHistory } from "react-router-dom";
-import { IconButton, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { FavoriteRounded } from "@material-ui/icons";
 
 import { ControlContext } from "../../Providers/ControlProvider";
 

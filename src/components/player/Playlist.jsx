@@ -90,7 +90,7 @@ const createItemData = memoize(
 const Playlist = (props) => {
   const classes = useStyles(props);
   //
-  const { width, dispatch } = useContext(ControlContext);
+  const { dispatch } = useContext(ControlContext);
   //const deviceWidth = width;
   //
   const {

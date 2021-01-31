@@ -1,15 +1,10 @@
 import React, { useContext, useRef, useCallback, useEffect } from "react";
-
 import { useLocation } from "react-router-dom";
-
-import { Box } from "@material-ui/core";
-
 import { mainContext } from "../../Providers/MainProvider";
 import { ControlContext } from "../../Providers/ControlProvider";
-
 import MaximizedPlayer from "./MaximizedPlayer";
-
 import MinimizedPlayer from "./MinimizedPlayer";
+import { Box } from "@material-ui/core";
 
 export default function MediaPlayer() {
   const {

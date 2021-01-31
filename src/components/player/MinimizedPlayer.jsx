@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { useHistory } from "react-router-dom";
 import Controller from "./Controller";
 import CurrReciter from "./CurrReciter";
 import VolumeController from "./VolumeController";

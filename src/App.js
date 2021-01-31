@@ -1,9 +1,9 @@
 import React from "react";
-import { Redirect, Route, Switch, useLocation } from "react-router-dom";
+import { MediaPlayer } from "./components";
 import { Home } from "./routes";
 import ControlProvider from "./Providers/ControlProvider";
 import ThemeProvider from "./Providers/ThemeProvider";
-import { MediaPlayer } from "./components";
+import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 
 function App() {
   const location = useLocation();
@@ -23,6 +23,7 @@ function App() {
               </Route>
             </ControlProvider>
           </Switch>
+
           <Route
             path="/"
             render={() => (
