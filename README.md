@@ -107,4 +107,6 @@ You can install this App in your device by your browser. it will pop up in the u
 
 2.[Ylight Music](https://github.com/ShivamJoker/Ylight-Music/)
 
+3.[Freepik](https://www.freepik.com)
+
 ## Please open an issue for any bugs
