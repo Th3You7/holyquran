@@ -12,7 +12,7 @@ import "./index.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router basename="/holyquran">
+    <Router>
       <MainProvider>
         <ScrollToTop />
         <App />
