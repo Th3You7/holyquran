@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/HolyQuran-App/static/css/main.7a8ed5fa.chunk.css",
-    "main.js": "/HolyQuran-App/static/js/main.a0725272.chunk.js",
-    "main.js.map": "/HolyQuran-App/static/js/main.a0725272.chunk.js.map",
-    "runtime-main.js": "/HolyQuran-App/static/js/runtime-main.a7b10d0b.js",
-    "runtime-main.js.map": "/HolyQuran-App/static/js/runtime-main.a7b10d0b.js.map",
-    "static/js/2.a42c6dbb.chunk.js": "/HolyQuran-App/static/js/2.a42c6dbb.chunk.js",
-    "static/js/2.a42c6dbb.chunk.js.map": "/HolyQuran-App/static/js/2.a42c6dbb.chunk.js.map",
-    "index.html": "/HolyQuran-App/index.html",
-    "service-worker.js": "/HolyQuran-App/service-worker.js",
-    "service-worker.js.map": "/HolyQuran-App/service-worker.js.map",
-    "static/css/main.7a8ed5fa.chunk.css.map": "/HolyQuran-App/static/css/main.7a8ed5fa.chunk.css.map",
-    "static/js/2.a42c6dbb.chunk.js.LICENSE.txt": "/HolyQuran-App/static/js/2.a42c6dbb.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/HolyQuran-App/static/media/Quicksand-Regular.cffc2790.ttf",
-    "static/media/quran.2e94e079.jpg": "/HolyQuran-App/static/media/quran.2e94e079.jpg"
+    "main.css": "/static/css/main.b857e692.chunk.css",
+    "main.js": "/static/js/main.fa56a1cc.chunk.js",
+    "main.js.map": "/static/js/main.fa56a1cc.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.f463fe52.js",
+    "runtime-main.js.map": "/static/js/runtime-main.f463fe52.js.map",
+    "static/js/2.a42c6dbb.chunk.js": "/static/js/2.a42c6dbb.chunk.js",
+    "static/js/2.a42c6dbb.chunk.js.map": "/static/js/2.a42c6dbb.chunk.js.map",
+    "index.html": "/index.html",
+    "service-worker.js": "/service-worker.js",
+    "service-worker.js.map": "/service-worker.js.map",
+    "static/css/main.b857e692.chunk.css.map": "/static/css/main.b857e692.chunk.css.map",
+    "static/js/2.a42c6dbb.chunk.js.LICENSE.txt": "/static/js/2.a42c6dbb.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/Quicksand-Regular.cffc2790.ttf",
+    "static/media/quran.2e94e079.jpg": "/static/media/quran.2e94e079.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.a7b10d0b.js",
+    "static/js/runtime-main.f463fe52.js",
     "static/js/2.a42c6dbb.chunk.js",
-    "static/css/main.7a8ed5fa.chunk.css",
-    "static/js/main.a0725272.chunk.js"
+    "static/css/main.b857e692.chunk.css",
+    "static/js/main.fa56a1cc.chunk.js"
   ]
 }
