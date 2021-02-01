@@ -7,9 +7,13 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { ControlContext } from "../../Providers/ControlProvider";
 
-//TODO: Add favourite function later
+//TODO: Add favourite reciter functionality later
 
-const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles((theme) => ({
+  root: {
+    cursor: "pointer",
+  },
+}));
 
 const CurrReciter = (props) => {
   const { dispatch } = useContext(ControlContext);

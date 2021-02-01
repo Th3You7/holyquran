@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[7],
     width: "100%",
-    cursor: "pointer",
   },
 }));
 
