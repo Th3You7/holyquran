@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/HolyQuran-App/static/css/main.7a8ed5fa.chunk.css",
+    "main.js": "/HolyQuran-App/static/js/main.a0725272.chunk.js",
+    "main.js.map": "/HolyQuran-App/static/js/main.a0725272.chunk.js.map",
+    "runtime-main.js": "/HolyQuran-App/static/js/runtime-main.a7b10d0b.js",
+    "runtime-main.js.map": "/HolyQuran-App/static/js/runtime-main.a7b10d0b.js.map",
+    "static/js/2.a42c6dbb.chunk.js": "/HolyQuran-App/static/js/2.a42c6dbb.chunk.js",
+    "static/js/2.a42c6dbb.chunk.js.map": "/HolyQuran-App/static/js/2.a42c6dbb.chunk.js.map",
+    "index.html": "/HolyQuran-App/index.html",
+    "service-worker.js": "/HolyQuran-App/service-worker.js",
+    "service-worker.js.map": "/HolyQuran-App/service-worker.js.map",
+    "static/css/main.7a8ed5fa.chunk.css.map": "/HolyQuran-App/static/css/main.7a8ed5fa.chunk.css.map",
+    "static/js/2.a42c6dbb.chunk.js.LICENSE.txt": "/HolyQuran-App/static/js/2.a42c6dbb.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/HolyQuran-App/static/media/Quicksand-Regular.cffc2790.ttf",
+    "static/media/quran.2e94e079.jpg": "/HolyQuran-App/static/media/quran.2e94e079.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a7b10d0b.js",
+    "static/js/2.a42c6dbb.chunk.js",
+    "static/css/main.7a8ed5fa.chunk.css",
+    "static/js/main.a0725272.chunk.js"
+  ]
+}
