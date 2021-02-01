@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/static/css/main.b857e692.chunk.css",
-    "main.js": "/static/js/main.fa56a1cc.chunk.js",
-    "main.js.map": "/static/js/main.fa56a1cc.chunk.js.map",
+    "main.js": "/static/js/main.d536b964.chunk.js",
+    "main.js.map": "/static/js/main.d536b964.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.f463fe52.js",
     "runtime-main.js.map": "/static/js/runtime-main.f463fe52.js.map",
-    "static/js/2.a42c6dbb.chunk.js": "/static/js/2.a42c6dbb.chunk.js",
-    "static/js/2.a42c6dbb.chunk.js.map": "/static/js/2.a42c6dbb.chunk.js.map",
+    "static/js/2.a76b3efd.chunk.js": "/static/js/2.a76b3efd.chunk.js",
+    "static/js/2.a76b3efd.chunk.js.map": "/static/js/2.a76b3efd.chunk.js.map",
     "index.html": "/index.html",
     "service-worker.js": "/service-worker.js",
     "service-worker.js.map": "/service-worker.js.map",
     "static/css/main.b857e692.chunk.css.map": "/static/css/main.b857e692.chunk.css.map",
-    "static/js/2.a42c6dbb.chunk.js.LICENSE.txt": "/static/js/2.a42c6dbb.chunk.js.LICENSE.txt",
+    "static/js/2.a76b3efd.chunk.js.LICENSE.txt": "/static/js/2.a76b3efd.chunk.js.LICENSE.txt",
     "static/media/index.css": "/static/media/Quicksand-Regular.cffc2790.ttf",
     "static/media/quran.2e94e079.jpg": "/static/media/quran.2e94e079.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.f463fe52.js",
-    "static/js/2.a42c6dbb.chunk.js",
+    "static/js/2.a76b3efd.chunk.js",
     "static/css/main.b857e692.chunk.css",
-    "static/js/main.fa56a1cc.chunk.js"
+    "static/js/main.d536b964.chunk.js"
   ]
 }
