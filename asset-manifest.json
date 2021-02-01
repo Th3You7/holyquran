@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.b857e692.chunk.css",
-    "main.js": "/static/js/main.18a98822.chunk.js",
-    "main.js.map": "/static/js/main.18a98822.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.f463fe52.js",
-    "runtime-main.js.map": "/static/js/runtime-main.f463fe52.js.map",
-    "static/js/2.a76b3efd.chunk.js": "/static/js/2.a76b3efd.chunk.js",
-    "static/js/2.a76b3efd.chunk.js.map": "/static/js/2.a76b3efd.chunk.js.map",
-    "index.html": "/index.html",
-    "service-worker.js": "/service-worker.js",
-    "service-worker.js.map": "/service-worker.js.map",
-    "static/css/main.b857e692.chunk.css.map": "/static/css/main.b857e692.chunk.css.map",
-    "static/js/2.a76b3efd.chunk.js.LICENSE.txt": "/static/js/2.a76b3efd.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/static/media/Quicksand-Regular.cffc2790.ttf",
-    "static/media/quran.2e94e079.jpg": "/static/media/quran.2e94e079.jpg"
+    "main.css": "/holyquran/static/css/main.c9d06162.chunk.css",
+    "main.js": "/holyquran/static/js/main.8faebca7.chunk.js",
+    "main.js.map": "/holyquran/static/js/main.8faebca7.chunk.js.map",
+    "runtime-main.js": "/holyquran/static/js/runtime-main.e257c68e.js",
+    "runtime-main.js.map": "/holyquran/static/js/runtime-main.e257c68e.js.map",
+    "static/js/2.fb95f530.chunk.js": "/holyquran/static/js/2.fb95f530.chunk.js",
+    "static/js/2.fb95f530.chunk.js.map": "/holyquran/static/js/2.fb95f530.chunk.js.map",
+    "index.html": "/holyquran/index.html",
+    "service-worker.js": "/holyquran/service-worker.js",
+    "service-worker.js.map": "/holyquran/service-worker.js.map",
+    "static/css/main.c9d06162.chunk.css.map": "/holyquran/static/css/main.c9d06162.chunk.css.map",
+    "static/js/2.fb95f530.chunk.js.LICENSE.txt": "/holyquran/static/js/2.fb95f530.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/holyquran/static/media/Quicksand-Regular.cffc2790.ttf",
+    "static/media/quran.2e94e079.jpg": "/holyquran/static/media/quran.2e94e079.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.f463fe52.js",
-    "static/js/2.a76b3efd.chunk.js",
-    "static/css/main.b857e692.chunk.css",
-    "static/js/main.18a98822.chunk.js"
+    "static/js/runtime-main.e257c68e.js",
+    "static/js/2.fb95f530.chunk.js",
+    "static/css/main.c9d06162.chunk.css",
+    "static/js/main.8faebca7.chunk.js"
   ]
 }
