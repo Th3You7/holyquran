@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const getAllReaders = "http://mp3quran.net/api/_english.php";
+const getAllReaders = "https://mp3quran.net/api/_english.php";
 const getAllSuras = "https://unpkg.com/quran-json@1.0.1/json/surahs.json";
 
 const fetchAllReaders = async () => {
