@@ -103,8 +103,8 @@ You can install this App in your device by your browser. it will pop up in the u
 
 ## Credits Goes To:
 
-1.[mp3Quran] (https://www.mp3quran.net/ar)
+1. [mp3Quran] (https://www.mp3quran.net/ar)
 
-2.[Ylight Music] (https://github.com/ShivamJoker/Ylight-Music/)
+2. [Ylight Music] (https://github.com/ShivamJoker/Ylight-Music/)
 
 ## Please open an issue for any bugs
